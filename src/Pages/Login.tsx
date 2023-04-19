@@ -9,9 +9,9 @@ import {
 } from "../utils/types";
 import { regex } from "../utils";
 import styled from "styled-components";
-import { useRegisterMutation } from "../generated/graphql";
+import { useLoginMutation, useRegisterMutation } from "../generated/graphql";
 import { useNavigate } from "react-router-dom";
-import { getFieldMap, getMessageMap } from "../utils/toErrorMap";
+import { getMessageMap } from "../utils/toErrorMap";
 
 const FormWrapper = styled.div`
   height: 100vh;
@@ -30,7 +30,7 @@ const FormWrapper = styled.div`
   }
 `;
 
-const Register: React.FC<EditProfileInputs> = () => {
+const Login: React.FC<EditProfileInputs> = () => {
   const navigate = useNavigate();
   const {
     register,
@@ -41,24 +41,18 @@ const Register: React.FC<EditProfileInputs> = () => {
   } = useForm<EditProfileInputs>({});
 
   // We will be using these custom hooks instead of using useMutation-hook from 'urql'.
-  const [user, registerUser] = useRegisterMutation();
+  const [user, loginUser] = useLoginMutation();
   const onSubmit: SubmitHandler<any> = async (fulldata) => {
     console.log("data in form: ", fulldata);
-    const response = await registerUser(fulldata);
-    console.log("id: ", response?.data?.register?.user?.id);
+    const response = await loginUser(fulldata);
+    console.log("id: ", response?.data?.login?.user?.id);
 
     // Handling errors;
-    if (response.data?.register.errors) {
-      setError(
-        //@ts-ignore
-        `${getFieldMap(response.data.register.errors)}`,
-        {
-          type: "custom",
-          message: `${getMessageMap(response.data.register.errors)}`,
-        }
-      );
-    } else if (response.data?.register.user) {
+    if (response.data?.login) {
+      console.log("error");
+    } else if (response.data?.login.user) {
       // Worked
+      console.log("not error");
       navigate("/");
     }
   };
@@ -66,34 +60,26 @@ const Register: React.FC<EditProfileInputs> = () => {
   return (
     <FormWrapper>
       <div className="container">
-        <h2>Register</h2>
+        <h2>Login</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputField
             label="User Name"
             type={HTMLInputTypes.TEXT}
             register={register as UseFormRegister<FormRegisterInputs>}
             errors={errors}
-            errorMessage={
-              errors.username?.message
-                ? errors.username?.message
-                : "Invalid userName"
-            }
+            errorMessage="Invalid User Name"
             fieldToRegister={`username`}
             placeHolder="Username"
             required={true}
             pattern={regex.userName}
           />
-          {/* {errors.userName?.message} */}
+          {errors.username?.message}
           <InputField
             label="Password"
             type={HTMLInputTypes.PASSWORD}
             register={register as UseFormRegister<FormRegisterInputs>}
             errors={errors}
-            errorMessage={
-              errors.password?.message
-                ? errors.password?.message
-                : "Field is required"
-            }
+            errorMessage="Field is required"
             fieldToRegister={`password`}
             placeHolder="Password"
             required={true}
@@ -103,7 +89,7 @@ const Register: React.FC<EditProfileInputs> = () => {
             variant="contained"
             style={{ backgroundColor: "#202020" }}
           >
-            Register
+            Login
           </Button>
         </form>
       </div>
@@ -111,4 +97,4 @@ const Register: React.FC<EditProfileInputs> = () => {
   );
 };
 
-export default Register;
+export default Login;

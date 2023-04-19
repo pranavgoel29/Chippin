@@ -7,8 +7,9 @@ import {
 } from "react-hook-form";
 
 export type EditProfileInputs = {
-  fullName: string;
-  email: string;
+  username?: string;
+  password?: string;
+  email?: string;
   phoneNumber?: string;
 };
 
