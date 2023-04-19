@@ -2,6 +2,6 @@ export const Pages = {
     HOME: '/',
     LOGIN: '/login',
     REGISTER: '/register',
-    SIGNUP: '/sign',
+    SIGNUP: '/signup',
     EDIT_PROFILE: '/profile',
 };
