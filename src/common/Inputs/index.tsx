@@ -1,0 +1,97 @@
+import React from "react";
+import { HTMLInputTypes, InputProps } from "../../utils/types";
+import { checkForErrors } from "../formUtils";
+import { breakpoints } from "../../styles/Breakpoints";
+
+import styled from "styled-components";
+
+export const InputWrapper = styled.div`
+  input {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    background-color: rgba(71, 84, 103, 0.05);
+
+    width: 100%;
+    height: 40px;
+    border-radius: 12px;
+    border: 0;
+
+    padding-left: 10px;
+    font-family: Nunito Sans, sans-serif;
+
+    :focus {
+      outline: 1;
+    }
+
+    :valid {
+      border: 0px solid;
+    }
+
+    :placeholder-shown {
+      border: 0;
+    }
+
+  .errorMessage {
+    margin: 10px 0px;
+    color: #ba1b1b;
+  }
+
+  @media screen and (max-width: ${breakpoints.sm}) {
+    .errorMessage {
+      font-size: 12px;
+      color: #ea6d2b;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+  }
+`;
+
+const InputField = ({
+  type,
+  register,
+  errors,
+  errorMessage,
+  fieldToRegister,
+  placeHolder,
+  required = false,
+  pattern,
+  disabled,
+  getValues,
+  watch,
+  useFormRegisterConfig,
+}: InputProps) => {
+  const registerConfig = {
+    required,
+    ...(useFormRegisterConfig || {}),
+    ...(pattern ? { pattern } : {}), // Uses pattern only if any valid regex is passed as a prop.
+  };
+
+  const validField =
+    watch && type === HTMLInputTypes.DATE && watch(fieldToRegister);
+  const { onChange: formOnChange, ...rest } = register(
+    fieldToRegister,
+    registerConfig
+  );
+
+  return (
+    <InputWrapper>
+      <input
+        id="myInput"
+        {...rest}
+        className={` ${disabled && "cursor-not-allowed"} `}
+        disabled={disabled}
+        placeholder={required ? `${placeHolder}*` : placeHolder}
+      />
+
+      {errors &&
+        Object.keys(errors).length > 0 &&
+        checkForErrors({ fieldToRegister, errors }) && (
+          <p className="errorMessage">{errorMessage}</p>
+        )}
+    </InputWrapper>
+  );
+};
+
+export default InputField;

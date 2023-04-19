@@ -1,6 +1,6 @@
 export const Pages = {
     HOME: '/',
     LOGIN: '/login',
-    ONBOARDING: '/onboarding',
+    REGISTER: '/register',
     EDIT_PROFILE: '/profile',
 };
