@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "styled-components";
+import theme from "../styles/theme";
 
 const SignUpWrapper = styled.div`
   .main-div {
@@ -12,7 +12,7 @@ const SignUpWrapper = styled.div`
     align-items: center;
   }
   .sub-div1 {
-    background-color: black;
+    background-color: ${theme.primaryColor};
     height: 100vh;
     width: 40%;
     display: flex;
@@ -31,8 +31,8 @@ const SignUpWrapper = styled.div`
     position: fixed;
     height: 6rem;
     width: 100%;
-    background-color: black;
-    color: #ffffff;
+    background-color: ${theme.primaryColor};
+    color: ${theme.dark_beige};
     display: none;
     justify-content: center;
     align-items: center;
@@ -44,7 +44,7 @@ const SignUpWrapper = styled.div`
   .title-heading {
     font-size: 72px;
     font-weight: 700;
-    color: white;
+    color: ${theme.dark_beige};
     font-family: "Montserrat", sans-serif;
   }
   .form-div {

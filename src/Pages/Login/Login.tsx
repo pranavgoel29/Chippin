@@ -48,10 +48,10 @@ const Login: React.FC<EditProfileInputs> = () => {
 
   return (
     <SignUpWrapper>
-      <div className="head-div">Login</div>
+      <div className="head-div">Chippin.</div>
       <div className="main-div">
         <div className="sub-div1">
-          <h1 className="title-heading">Login.</h1>
+          <h1 className="title-heading">Chippin.</h1>
         </div>
         <div className="sub-div2">
           <div className="form-div">
