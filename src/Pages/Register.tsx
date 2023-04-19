@@ -11,9 +11,16 @@ import styled from "styled-components";
 
 const FormWrapper = styled.div`
   height: 100vh;
-  padding: 40px;
+
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+
+  .container {
+    padding: 40px;
+  }
   form {
-    width: 20em;
+    // width: 20em;
     input {
       margin-bottom: 12px;
     }
@@ -34,29 +41,31 @@ const Register: React.FC<EditProfileInputs> = () => {
 
   return (
     <FormWrapper>
-      <h2>Hello</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <InputField
-          type={HTMLInputTypes.TEXT}
-          register={register as UseFormRegister<FormRegisterInputs>}
-          errors={errors}
-          errorMessage="Invalid User Name"
-          fieldToRegister={`userName`}
-          placeHolder="User Name"
-          required={true}
-          pattern={regex.userName}
-        />
-        <InputField
-          type={HTMLInputTypes.PASSWORD}
-          register={register as UseFormRegister<FormRegisterInputs>}
-          errors={errors}
-          errorMessage="Field is required"
-          fieldToRegister={`password`}
-          placeHolder="Password"
-          required={true}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <div className="container">
+        <h2>Hello</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <InputField
+            type={HTMLInputTypes.TEXT}
+            register={register as UseFormRegister<FormRegisterInputs>}
+            errors={errors}
+            errorMessage="Invalid User Name"
+            fieldToRegister={`userName`}
+            placeHolder="UserName"
+            required={true}
+            pattern={regex.userName}
+          />
+          <InputField
+            type={HTMLInputTypes.PASSWORD}
+            register={register as UseFormRegister<FormRegisterInputs>}
+            errors={errors}
+            errorMessage="Field is required"
+            fieldToRegister={`password`}
+            placeHolder="Password"
+            required={true}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </FormWrapper>
   );
 };
