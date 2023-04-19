@@ -83,7 +83,7 @@ const Register: React.FC<EditProfileInputs> = () => {
             required={true}
             pattern={regex.userName}
           />
-          {/* {errors.userName?.message} */}
+         
           <InputField
             label="Password"
             type={HTMLInputTypes.PASSWORD}

@@ -11,7 +11,7 @@ import { regex } from "../utils";
 import styled from "styled-components";
 import { useLoginMutation, useRegisterMutation } from "../generated/graphql";
 import { useNavigate } from "react-router-dom";
-import { getMessageMap } from "../utils/toErrorMap";
+import { getFieldMap, getMessageMap } from "../utils/toErrorMap";
 
 const FormWrapper = styled.div`
   height: 100vh;
@@ -48,8 +48,16 @@ const Login: React.FC<EditProfileInputs> = () => {
     console.log("id: ", response?.data?.login?.user?.id);
 
     // Handling errors;
-    if (response.data?.login) {
+    if (response.data?.login.errors) {
       console.log("error");
+      setError(
+        //@ts-ignore
+        `${getFieldMap(response.data.login.errors)}`,
+        {
+          type: "custom",
+          message: `${getMessageMap(response.data.login.errors)}`,
+        }
+      );
     } else if (response.data?.login.user) {
       // Worked
       console.log("not error");
@@ -67,19 +75,27 @@ const Login: React.FC<EditProfileInputs> = () => {
             type={HTMLInputTypes.TEXT}
             register={register as UseFormRegister<FormRegisterInputs>}
             errors={errors}
-            errorMessage="Invalid User Name"
+            errorMessage={
+              errors.username?.message
+                ? errors.username?.message
+                : "Invalid userName"
+            }
             fieldToRegister={`username`}
             placeHolder="Username"
             required={true}
             pattern={regex.userName}
           />
-          {errors.username?.message}
+          
           <InputField
             label="Password"
             type={HTMLInputTypes.PASSWORD}
             register={register as UseFormRegister<FormRegisterInputs>}
             errors={errors}
-            errorMessage="Field is required"
+            errorMessage={
+              errors.password?.message
+                ? errors.password?.message
+                : "Field is required"
+            }
             fieldToRegister={`password`}
             placeHolder="Password"
             required={true}
