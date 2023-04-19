@@ -1,6 +1,7 @@
 import React from "react";
 import { SubmitHandler, UseFormRegister, useForm } from "react-hook-form";
 import InputField from "../common/Inputs";
+import Button from "@mui/material/Button";
 import {
   EditProfileInputs,
   FormRegisterInputs,
@@ -24,9 +25,6 @@ const FormWrapper = styled.div`
   }
   form {
     // width: 20em;
-    input {
-      margin-bottom: 12px;
-    }
   }
 `;
 
@@ -48,6 +46,7 @@ const Register: React.FC<EditProfileInputs> = () => {
         <h2>Hello</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputField
+            label="User Name"
             type={HTMLInputTypes.TEXT}
             register={register as UseFormRegister<FormRegisterInputs>}
             errors={errors}
@@ -58,6 +57,7 @@ const Register: React.FC<EditProfileInputs> = () => {
             pattern={regex.userName}
           />
           <InputField
+            label="Password"
             type={HTMLInputTypes.PASSWORD}
             register={register as UseFormRegister<FormRegisterInputs>}
             errors={errors}
@@ -66,7 +66,13 @@ const Register: React.FC<EditProfileInputs> = () => {
             placeHolder="Password"
             required={true}
           />
-          <button type="submit">Submit</button>
+          <Button
+            type="submit"
+            variant="contained"
+            style={{ backgroundColor: "#202020" }}
+          >
+            Contained
+          </Button>
         </form>
       </div>
     </FormWrapper>

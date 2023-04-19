@@ -24,6 +24,7 @@ export enum HTMLInputTypes {
 
 export type InputProps = {
   type: HTMLInputTypes;
+  label?: string;
   register: UseFormRegister<FormRegisterInputs>;
   errors?: FieldErrors<any>;
   errorMessage?: string;

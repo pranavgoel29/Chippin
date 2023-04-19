@@ -6,12 +6,15 @@ import { breakpoints } from "../../styles/Breakpoints";
 import styled from "styled-components";
 
 export const InputWrapper = styled.div`
+  margin-bottom: 8px;
   input {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 
     background-color: rgba(71, 84, 103, 0.05);
+
+    margin-top: 2px;
 
     width: 100%;
     height: 40px;
@@ -32,18 +35,18 @@ export const InputWrapper = styled.div`
     :placeholder-shown {
       border: 0;
     }
+  }
 
   .errorMessage {
-    margin: 10px 0px;
-    color: #ba1b1b;
+    font-size: 14px;
+    color: #c82f2f;
+    margin-top: 5px;
+    font-weight: 600;
   }
 
   @media screen and (max-width: ${breakpoints.sm}) {
     .errorMessage {
       font-size: 12px;
-      color: #ea6d2b;
-      margin-top: 5px;
-      font-weight: 600;
     }
   }
 `;
@@ -60,6 +63,7 @@ const InputField = ({
   disabled,
   getValues,
   watch,
+  label,
   useFormRegisterConfig,
 }: InputProps) => {
   const registerConfig = {
@@ -77,6 +81,7 @@ const InputField = ({
 
   return (
     <InputWrapper>
+      <label htmlFor={fieldToRegister}>{label}</label>
       <input
         {...rest}
         className={` ${disabled && "cursor-not-allowed"} `}
