@@ -78,10 +78,10 @@ const InputField = ({
   return (
     <InputWrapper>
       <input
-        id="myInput"
         {...rest}
         className={` ${disabled && "cursor-not-allowed"} `}
         disabled={disabled}
+        type={type}
         placeholder={required ? `${placeHolder}*` : placeHolder}
       />
 

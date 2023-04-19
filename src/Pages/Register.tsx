@@ -14,6 +14,9 @@ const FormWrapper = styled.div`
   padding: 40px;
   form {
     width: 20em;
+    input {
+      margin-bottom: 12px;
+    }
   }
 `;
 
@@ -37,11 +40,20 @@ const Register: React.FC<EditProfileInputs> = () => {
           type={HTMLInputTypes.TEXT}
           register={register as UseFormRegister<FormRegisterInputs>}
           errors={errors}
-          errorMessage="Invalid Full Name"
-          fieldToRegister={`fullName`}
-          placeHolder="Full Name"
+          errorMessage="Invalid User Name"
+          fieldToRegister={`userName`}
+          placeHolder="User Name"
           required={true}
-          pattern={regex.fullName}
+          pattern={regex.userName}
+        />
+        <InputField
+          type={HTMLInputTypes.PASSWORD}
+          register={register as UseFormRegister<FormRegisterInputs>}
+          errors={errors}
+          errorMessage="Field is required"
+          fieldToRegister={`password`}
+          placeHolder="Password"
+          required={true}
         />
         <button type="submit">Submit</button>
       </form>
