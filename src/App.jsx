@@ -3,6 +3,7 @@ import GlobalStyle from "./styles/GlobalStyles";
 import { Pages } from "./routes";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login";
+import Signup from './Pages'
 import Register from "./Pages/Register";
 import { Client, cacheExchange, fetchExchange, Provider } from "urql";
 
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
   { path: Pages.HOME, element: <Home /> },
   { path: Pages.LOGIN, element: <Login /> },
   { path: Pages.REGISTER, element: <Register /> },
+  {path:Pages.SIGNUP, element:<Signup/>}
 ]);
 
 function App() {
