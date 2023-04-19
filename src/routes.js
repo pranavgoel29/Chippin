@@ -3,4 +3,5 @@ export const Pages = {
     LOGIN: '/login',
     REGISTER: '/register',
     EDIT_PROFILE: '/profile',
+    DASHBOARD: '/dashboard'
 };

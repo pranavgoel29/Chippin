@@ -10,12 +10,16 @@
     "gen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@coreui/react-chartjs": "^2.1.2",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "@mui/styled-engine-sc": "^5.12.0",
+    "chart.js": "^4.2.1",
     "graphql": "^16.6.0",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
     "react-router-dom": "^6.10.0",

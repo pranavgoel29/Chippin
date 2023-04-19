@@ -1,0 +1,41 @@
+.card{
+    display:flex;
+    flex-direction:column;
+    width:17.3%;
+    height:100px;
+    padding:25px;
+    margin:2rem;
+    margin-left: 0px !important;
+    border-radius: 20px;
+    flex: 1 1 150px !important;
+}
+.cardicon{
+    display: flex;
+    margin-right: -1rem;
+    justify-content: end;
+    font-weight: 700;
+    /* margin-top: rem; */
+    float:right;
+}
+.cardtitle{
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    float:left;
+}
+.carddata{
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    float:left;
+}

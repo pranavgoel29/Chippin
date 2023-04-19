@@ -1,0 +1,38 @@
+.widget {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  height: 100px;
+  min-width: 200px;
+  background-color: white;
+
+  .left,
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .counter {
+      font-size: 28px;
+      font-weight:bold;
+      margin-bottom: 5px;
+      margin-left: 10px;
+    }
+
+    .title {
+      font-size: 12px;
+      margin-top: 30px;
+      margin-left: 10px;
+    }
+
+    .icon {
+      font-size: 18px;
+      padding: 5px;
+      border-radius: 5px;
+      align-self: flex-end;
+    }
+  }
+}
+
