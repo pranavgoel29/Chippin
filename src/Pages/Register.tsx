@@ -18,6 +18,9 @@ const FormWrapper = styled.div`
 
   .container {
     padding: 40px;
+    h2 {
+      margin-bottom: 8px;
+    }
   }
   form {
     // width: 20em;
