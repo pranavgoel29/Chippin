@@ -43,13 +43,10 @@ const Login: React.FC<EditProfileInputs> = () => {
   // We will be using these custom hooks instead of using useMutation-hook from 'urql'.
   const [user, loginUser] = useLoginMutation();
   const onSubmit: SubmitHandler<any> = async (fulldata) => {
-    console.log("data in form: ", fulldata);
     const response = await loginUser(fulldata);
-    console.log("id: ", response?.data?.login?.user?.id);
 
     // Handling errors;
     if (response.data?.login.errors) {
-      console.log("error");
       setError(
         //@ts-ignore
         `${getFieldMap(response.data.login.errors)}`,
@@ -85,7 +82,7 @@ const Login: React.FC<EditProfileInputs> = () => {
             required={true}
             pattern={regex.userName}
           />
-          
+
           <InputField
             label="Password"
             type={HTMLInputTypes.PASSWORD}
