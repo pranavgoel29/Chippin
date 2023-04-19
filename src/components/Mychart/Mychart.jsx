@@ -6,7 +6,7 @@ export default function Mychart() {
   return (
     <div className='chart'>
       <CChart
-      style={{width:"100%",height:"20rem",maxHeight:"20rem"}}
+      style={{width:"90%",height:"15rem",maxHeight:"20rem"}}
   type="line" 
   data={{
     labels: ["Week 1","","","Week 2","","", "Week 3","","","Week 4",],
@@ -16,7 +16,7 @@ export default function Mychart() {
         borderColor: "red",
         data: [40, 30, 10, 11, 20, 30, 39, 50, 60,70],
         tension:0.3,
-        pointStyle:'false'
+        pointStyle:false
       },
       {
         label: "User",
