@@ -1,3 +1,4 @@
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyles";
 import { Pages } from "./routes";
