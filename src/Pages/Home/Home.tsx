@@ -25,14 +25,14 @@ const Home = () => {
   } else {
     body = (
       <>
-        <p>{data.me.username}</p>
+        <h2>{data.me.username}</h2>
       </>
     );
   }
 
   return (
     <>
-      {/* <p style={{ color: "black" }}>Hii everyone</p> */}
+      <h3 style={{ color: "black" }}>Hii,</h3>
       {body}
     </>
   );
