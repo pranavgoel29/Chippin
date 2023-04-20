@@ -46,7 +46,7 @@ const Dashboard = () => {
       <div className="page-body">
         <div className="page-body-div1">
           <div className="div1-sub1">
-            <h1 className="div1-sub1-h1">Board.</h1>
+            <h1 className="div1-sub1-h1">Chippin.</h1>
             <ul className="div1-sub1-ul">
               <li className="div1-sub1-li def">
                 <img className="icon" src={dashboard}></img>Dashboard

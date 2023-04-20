@@ -9,9 +9,7 @@ export default function Mychart() {
       <CChart
         style={{ width: "90%", height: "15rem", maxHeight: "20rem" }}
         type="line"
-        options={legend:{
-          positiom    'listen ajaege'
-        }}
+      
         data={{
           labels: [
             "Week 1",
