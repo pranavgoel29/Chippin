@@ -1,23 +1,9 @@
 import React from "react";
-// import { useMeQuery } from "../../generated/graphql";
-import { gql, useQuery } from "urql";
-
-const TodosQuery = gql`
-  query Me {
-    me {
-      id
-      username
-    }
-  }
-`;
+import { useMeQuery } from "../../generated/graphql";
 
 const Home = () => {
-  // const [{ data, fetching, error }] = useMeQuery();
-  const [result, reexecuteQuery] = useQuery({
-    query: TodosQuery,
-  });
+  const [{ data, fetching, error }] = useMeQuery();
 
-  const { data, fetching, error } = result;
   let body: any = "";
 
   console.log(data);

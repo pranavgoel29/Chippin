@@ -12,6 +12,14 @@ import { Client, cacheExchange, fetchExchange, Provider } from "urql";
 const client = new Client({
   url: "http://localhost:4000/graphql",
   exchanges: [cacheExchange, fetchExchange],
+  fetchOptions: {
+    credentials: "include",
+
+    // Adding this for setting cookies
+    headers: {
+      "x-forwarded-proto": `https`,
+    },
+  },
 });
 
 const router = createBrowserRouter([
