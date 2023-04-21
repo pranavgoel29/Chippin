@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "../styles/theme";
 
 const ButtonWrapper = styled.div`
   .form-button {
@@ -16,6 +17,11 @@ const ButtonWrapper = styled.div`
     line-height: 20px;
     text-align: center;
     color: #ffffff;
+  }
+
+  .form-button:hover {
+    background: ${theme.primaryColor};
+    color: ${theme.secondaryColor};
   }
 `;
 
