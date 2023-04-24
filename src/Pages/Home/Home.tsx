@@ -1,9 +1,11 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import { useMeQuery } from "../../generated/graphql";
+import { useLogoutMutation, useMeQuery } from "../../generated/graphql";
 import ButtonWrapper from "../../common/ButtonWrapper";
 import styled from "styled-components";
 import theme from "../../styles/theme";
+import { useNavigate } from "react-router-dom";
+import { Pages } from "../../routes";
 
 const HomeWrapper = styled.div`
   .navBar {
@@ -23,6 +25,8 @@ const HomeWrapper = styled.div`
 `;
 
 const Home = () => {
+  const navigate = useNavigate();
+  const [{ fetching: logoutFetching }, logout] = useLogoutMutation();
   const [{ data, fetching, error }] = useMeQuery();
 
   let body: any = "";
@@ -41,7 +45,7 @@ const Home = () => {
       <Grid className="userDetails">
         <p style={{ color: "black" }}>Hii everyone</p>
         <ButtonWrapper>
-          <button type="submit" className="form-button">
+          <button type="submit" className="form-button" onClick={()=>navigate(Pages.REGISTER)}>
             Register
           </button>
         </ButtonWrapper>
@@ -58,6 +62,11 @@ const Home = () => {
             type="submit"
             className="form-button"
             style={{ width: "100px" }}
+            onClick={() => {
+              //@ts-ignore
+              logout();
+              navigate(Pages.LOGIN);
+            }}
           >
             Log out
           </button>
