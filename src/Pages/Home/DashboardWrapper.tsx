@@ -16,7 +16,6 @@ const DashboardWrapper = styled.div`
   .page-body-div1 {
     // background-color: black;
     // margin: 2.5rem;
-
     height: 90%;
     width: 20%;
     display: flex;
@@ -24,6 +23,7 @@ const DashboardWrapper = styled.div`
     // border-radius: 30px;
     padding-left: 3.125rem;
     flex-direction: column;
+    border-right: 2px solid ${theme.backgroundAccentColor}
   }
   .page-body-div2 {
     margin-left: 1rem !important;

@@ -3,7 +3,7 @@ import theme from "../styles/theme";
 
 const SignUpWrapper = styled.div`
   .main-div {
-    background-color: white;
+    background-color: ${theme.backgroundColor};
     height: 100vh;
     width: 100%;
     display: flex;
@@ -12,7 +12,7 @@ const SignUpWrapper = styled.div`
     align-items: center;
   }
   .sub-div1 {
-    background-color: ${theme.primaryColor};
+    background-color: ${theme.backgroundColor};
     height: 100vh;
     width: 40%;
     display: flex;

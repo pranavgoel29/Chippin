@@ -1,10 +1,10 @@
 import React from "react";
 import DashboardWrapper from "./DashboardWrapper";
-import dashboard from "../../images/dashboard.png";
-import schedule from "../../images/schedule.png";
+// import schedule from "../../images/schedule.png";
+// import setting from "../../images/setting.png";
 
+import dashboard from "../../images/dashboard.png";
 import user from "../../images/user.png";
-import setting from "../../images/setting.png";
 import transaction from "../../images/transaction.png";
 
 const Dashboard = () => {
@@ -20,15 +20,13 @@ const Dashboard = () => {
             <li className="div1-sub1-li">
               <img className="icon" src={transaction}></img>Transactions
             </li>
+
             <li className="div1-sub1-li">
-              <img className="icon" src={schedule}></img>Schedules
+              <img className="icon" src={user}></img>User
             </li>
-            <li className="div1-sub1-li">
-              <img className="icon" src={user}></img>Users
-            </li>
-            <li className="div1-sub1-li">
+            {/* <li className="div1-sub1-li">
               <img className="icon" src={setting}></img>Settings
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="div1-sub2">
