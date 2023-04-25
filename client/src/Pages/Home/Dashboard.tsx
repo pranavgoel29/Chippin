@@ -6,14 +6,42 @@ import DashboardWrapper from "./DashboardWrapper";
 import dashboard from "../../images/dashboard.png";
 import user from "../../images/user.png";
 import transaction from "../../images/transaction.png";
+import { useMeQuery } from "../../generated/graphql";
+import { Grid } from "@mui/material";
 
 const Dashboard = () => {
+  const [{ data, fetching, error }] = useMeQuery();
+
+  let body: any = "";
+
+  if (fetching) {
+    // User not logged in
+    // console.log(data);
+    body = null;
+  } else if (!data?.me) {
+    //user is logged in
+    console.log(data);
+    // console.log(error)
+    body = (
+      <Grid className="userDetails">
+        <p style={{ color: "black" }}>Hii everyone</p>
+      </Grid>
+    );
+  } else {
+    body = (
+      <p>
+        <b>{data.me.username}</b>
+      </p>
+    );
+  }
+
   return (
     <DashboardWrapper>
       <div className="page-body-div1">
         <div className="div1-sub1">
           <h1 className="div1-sub1-h1">Chippin.</h1>
           <ul className="div1-sub1-ul">
+            {body}
             <li className="div1-sub1-li def">
               <img className="icon" src={dashboard}></img>Dashboard
             </li>
