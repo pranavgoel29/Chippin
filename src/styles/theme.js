@@ -15,6 +15,7 @@ const theme = {
     fontWeight600: '600',
 
     // Colors
+    backgroundColor: '#242529',
     primaryColor: '#1D2939',
     secondaryColor: '#F9EED2',
     tertiaryColor: '#00A388',

@@ -5,7 +5,7 @@ import { Pages } from "./routes";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
-// import Dashboard from "./Pages/Home/Dashboard";
+import Dashboard from "./Pages/Home/Dashboard";
 
 import { Client, fetchExchange, Provider } from "urql";
 import { cacheExchange, Cache, QueryInput } from "@urql/exchange-graphcache";
@@ -95,7 +95,7 @@ const router = createBrowserRouter([
   { path: Pages.HOME, element: <Home /> },
   { path: Pages.LOGIN, element: <Login /> },
   { path: Pages.REGISTER, element: <Register /> },
-  // { path: Pages.DASHBOARD, element: <Dashboard /> },
+  { path: Pages.DASHBOARD, element: <Dashboard /> },
 ]);
 
 function App() {
