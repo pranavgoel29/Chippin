@@ -31,6 +31,7 @@ const Login: React.FC<EditProfileInputs> = () => {
 
     // Handling errors;
     if (response.data?.login.errors) {
+      console.log(getFieldMap(response?.data.login.errors));
       setError(
         //@ts-ignore
         `${getFieldMap(response.data.login.errors)}`,
@@ -60,19 +61,19 @@ const Login: React.FC<EditProfileInputs> = () => {
             <div className="form-main-div">
               <form onSubmit={handleSubmit(onSubmit)} className="form">
                 <InputField
-                  label="User Name"
+                  label="Username or Email"
                   type={HTMLInputTypes.TEXT}
                   register={register as UseFormRegister<FormRegisterInputs>}
                   errors={errors}
                   errorMessage={
-                    errors.username?.message
-                      ? errors.username?.message
+                    errors.usernameOrEmail?.message
+                      ? errors.usernameOrEmail?.message
                       : "Invalid userName"
                   }
-                  fieldToRegister={`username`}
-                  placeHolder="Username"
+                  fieldToRegister={`usernameOrEmail`}
+                  placeHolder="username or email"
                   required={true}
-                  pattern={regex.userName}
+                  // pattern={regex.userName}
                 />
 
                 <InputField

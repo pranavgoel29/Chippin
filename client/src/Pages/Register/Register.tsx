@@ -29,7 +29,7 @@ const Register = () => {
   // We will be using these custom hooks instead of using useMutation-hook from 'urql'.
   const [user, registerUser] = useRegisterMutation();
   const onSubmit: SubmitHandler<any> = async (fulldata) => {
-    const response = await registerUser(fulldata);
+    const response = await registerUser({ options: fulldata });
 
     // Handling errors;
     if (response.data?.register.errors) {
@@ -61,7 +61,7 @@ const Register = () => {
             <div className="form-main-div">
               <form onSubmit={handleSubmit(onSubmit)} className="form">
                 <InputField
-                  label="User Name"
+                  label="Username"
                   type={HTMLInputTypes.TEXT}
                   register={register as UseFormRegister<FormRegisterInputs>}
                   errors={errors}
@@ -71,9 +71,25 @@ const Register = () => {
                       : "Invalid userName"
                   }
                   fieldToRegister={`username`}
-                  placeHolder="Username"
+                  placeHolder="username"
                   required={true}
                   pattern={regex.userName}
+                />
+
+                <InputField
+                  label="Email"
+                  type={HTMLInputTypes.TEXT}
+                  register={register as UseFormRegister<FormRegisterInputs>}
+                  errors={errors}
+                  errorMessage={
+                    errors.username?.message
+                      ? errors.username?.message
+                      : "Invalid userName"
+                  }
+                  fieldToRegister={`email`}
+                  placeHolder="email"
+                  required={true}
+                  pattern={regex.email}
                 />
 
                 <InputField

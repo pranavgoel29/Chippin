@@ -87,8 +87,8 @@ const main = async () => {
     // Adding this to handle cross origin requests that will be going to the apollo studio.
 
     cors: {
-      origin: ["https://studio.apollographql.com"],
-      // origin: ["http://127.0.0.1:5173"],
+      // origin: ["https://studio.apollographql.com"],
+      origin: ["http://127.0.0.1:5173"],
       credentials: true,
     },
   });
