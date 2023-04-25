@@ -1,0 +1,22 @@
+// import {RequiredEntityData} from "@mikro-orm/core";
+// import { Post } from "./entities/Post";
+
+
+  // const emFork = orm.em.fork(); // <-- create the fork
+  // const post = emFork.create(Post, {
+  //   // <-- use the fork instead of global `orm.em`
+  //   title: "my first post",
+  // } as RequiredEntityData<Post>);
+  // await emFork.persistAndFlush(post); // <-- use the fork instead of global
+
+  // console.log("-------------------sql 2 -------------------");
+  // await orm.em.insert(Post, { title: "my first post 2" }); // <-- this line could work with the global EM too, why? because `nativeInsert` is not touching the identity map = the context
+
+  // The below line will give an error - EntityManager instance methods for context specific actions is disallowed. If you need to work with the global instance's identity map, use `allowGlobalContext` configuration option or `fork()` instead.
+
+  // const posts = await orm.em.find(Post,{});
+  // To solve the above error, we will use fork.
+
+  // const emFork = orm.em.fork();
+  // const posts = await emFork.find(Post, {});
+  // console.log(posts);

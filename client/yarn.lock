@@ -1501,7 +1501,7 @@
   dependencies:
     "@types/node" "*"
 
-"@urql/core@>=4.0.0":
+"@urql/core@>=4.0.0", "@urql/core@^4.0.6":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@urql/core/-/core-4.0.6.tgz#1dedef5d3f40e5842e7febe8d9cf31e8c99a4bff"
   integrity sha512-RxlX5nxWZsvS1lPCvOdgdYbIVVfih/DrjPzGZ0ThP1GuVycaxw5t0O7XEXXYHICeXNKj95HJBxW0o/37zg+z6Q==
