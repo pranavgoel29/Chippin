@@ -1,7 +1,6 @@
 import {
   Resolver,
   Mutation,
-  InputType,
   Arg,
   Field,
   Ctx,
@@ -13,15 +12,8 @@ import { User } from "../entities/User";
 import { RequiredEntityData } from "@mikro-orm/core";
 import argon2 from "argon2";
 import { EntityManager } from "@mikro-orm/postgresql";
-// import { COOKIE } from "../constants";
-
-@InputType()
-class UsernamePasswordInput {
-  @Field()
-  username: string;
-  @Field()
-  password: string;
-}
+import { UsernamePasswordInput } from "./UsernamePasswordInput";
+import validateRegister from "../utils/validateRegister";
 
 @ObjectType()
 class FieldError {
@@ -43,6 +35,13 @@ class UserResponse {
 
 @Resolver()
 export class UserResolver {
+  @Mutation(() => Boolean)
+  async forgotPassword(@Arg("email") email: string, @Ctx() { em }: MyContext) {
+    const user = await em.findOne(User, { email });
+    console.log(user);
+    return true;
+  }
+
   // me query
   @Query(() => User, { nullable: true })
   async me(@Ctx() { req, em }: MyContext) {
@@ -62,27 +61,11 @@ export class UserResolver {
     @Arg("options") options: UsernamePasswordInput,
     @Ctx() { em, req }: MyContext
   ): Promise<UserResponse> {
-    if (options.username.length <= 2) {
-      return {
-        errors: [
-          {
-            field: "username",
-            message: "Length must be greater than 2",
-          },
-        ],
-      };
+    const errors = validateRegister(options);
+    if (errors) {
+      return { errors };
     }
 
-    if (options.password.length <= 2) {
-      return {
-        errors: [
-          {
-            field: "password",
-            message: "Length must be greater than 2",
-          },
-        ],
-      };
-    }
     const hashedPassword = await argon2.hash(options.password);
 
     let user;
@@ -92,6 +75,7 @@ export class UserResolver {
         .getKnexQuery()
         .insert({
           username: options.username,
+          email: options.email,
           password: hashedPassword,
           created_at: new Date(),
           updated_at: new Date(),
@@ -123,12 +107,16 @@ export class UserResolver {
 
   @Mutation(() => UserResponse)
   async login(
-    @Arg("options") options: UsernamePasswordInput,
+    @Arg("usernameOrEmail") usernameOrEmail: string,
+    @Arg("password") password: string,
     @Ctx() { em, req }: MyContext
   ): Promise<UserResponse> {
-    const user = await em.findOne(User, {
-      username: options.username,
-    } as RequiredEntityData<User>);
+    const user = await em.findOne(
+      User,
+      usernameOrEmail.includes("@")
+        ? { email: usernameOrEmail }
+        : ({ username: usernameOrEmail } as RequiredEntityData<User>)
+    );
     if (!user) {
       return {
         errors: [
@@ -136,7 +124,7 @@ export class UserResolver {
         ],
       };
     }
-    const valid = await argon2.verify(user.password, options.password);
+    const valid = await argon2.verify(user.password, password);
     if (!valid) {
       return {
         errors: [{ field: "password", message: "Incorrect password" }],
