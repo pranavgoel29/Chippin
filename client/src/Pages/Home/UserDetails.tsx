@@ -125,10 +125,10 @@ const UserDetails = () => {
             </li> */}
           </ul>
         </div>
-        <div className="div1-sub2">
+        {/* <div className="div1-sub2">
           <p className="div1-sub2-bottom">Help</p>
           <p className="div1-sub2-bottom1">Contact us</p>
-        </div>
+        </div> */}
       </div>
       <div className="page-body-div2">
         <HomeWrapper>

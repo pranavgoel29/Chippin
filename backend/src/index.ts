@@ -93,6 +93,7 @@ const main = async () => {
     cors: {
       // origin: ["https://studio.apollographql.com"],
       origin: ["http://127.0.0.1:5173"],
+      // origin: ["https://chippin.vercel.app"],
       credentials: true,
     },
   });
