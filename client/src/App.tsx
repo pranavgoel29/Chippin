@@ -17,7 +17,7 @@ import {
   Query,
   RegisterMutation,
 } from "./generated/graphql";
-import { UseMediaQueryOptions } from "@mui/material";
+import ChangePassword from "./Pages/ChangePassword/ChangePassword";
 
 function betterUpdateQuery<Result, Query>(
   cache: Cache,
@@ -96,6 +96,7 @@ const router = createBrowserRouter([
   { path: Pages.LOGIN, element: <Login /> },
   { path: Pages.REGISTER, element: <Register /> },
   { path: Pages.DASHBOARD, element: <Dashboard /> },
+  { path: Pages.CHANGE_PASSWORD, element: <ChangePassword /> },
 ]);
 
 function App() {

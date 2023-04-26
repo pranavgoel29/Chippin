@@ -14,6 +14,11 @@ import argon2 from "argon2";
 import { EntityManager } from "@mikro-orm/postgresql";
 import { UsernamePasswordInput } from "./UsernamePasswordInput";
 import validateRegister from "../utils/validateRegister";
+import { sendEmail } from "../utils/sendEmail";
+
+// This will just import v4 of uuid creator
+import { v4 } from "uuid";
+import { COOKIE_NAME, FORGET_PASSWORD_PREFIX } from "../constants";
 
 @ObjectType()
 class FieldError {
@@ -35,10 +40,86 @@ class UserResponse {
 
 @Resolver()
 export class UserResolver {
+  @Mutation(() => UserResponse)
+  async changePassword(
+    @Arg("token") token: string,
+    @Arg("newPassword") newPassword: string,
+    @Ctx() { em, req, redisClient }: MyContext
+  ): Promise<UserResponse> {
+    if (newPassword.length <= 2) {
+      return {
+        errors: [
+          {
+            field: "newPassword",
+            message: "Length must be greater than 2",
+          },
+        ],
+      };
+    }
+
+    // Looking up the token in redis
+    const userId = await redisClient.get(FORGET_PASSWORD_PREFIX + token);
+    if (!userId) {
+      return {
+        errors: [
+          {
+            field: "token",
+            message: "Token Expired",
+          },
+        ],
+      };
+    }
+
+    const user = await em.findOne(User, { id: parseInt(userId) });
+
+    if (!user) {
+      return {
+        errors: [
+          {
+            field: "token",
+            message: "User no longer exists",
+          },
+        ],
+      };
+    }
+
+    user.password = await argon2.hash(newPassword);
+    await em.persistAndFlush(user);
+
+    // login the user after the password has been set
+    req.session.userId = user.id;
+
+    return { user };
+  }
+
   @Mutation(() => Boolean)
-  async forgotPassword(@Arg("email") email: string, @Ctx() { em }: MyContext) {
+  async forgotPassword(
+    @Arg("email") email: string,
+    @Ctx() { em, redisClient }: MyContext
+  ) {
     const user = await em.findOne(User, { email });
-    console.log(user);
+    // console.log(user);
+    if (!user) {
+      // email is not there in the database
+      return true;
+    }
+
+    const token = v4();
+
+    await redisClient.set(
+      FORGET_PASSWORD_PREFIX + token,
+      user.id,
+      "PX",
+
+      // Setting expiration time of the forgot password token
+      1000 * 60 * 60 * 24 // 1 day
+    );
+
+    await sendEmail(
+      email,
+      `<a href="http://127.0.0.1:5173/change-password/${token}">Reset Password</a>`
+    );
+
     return true;
   }
 
@@ -120,7 +201,10 @@ export class UserResolver {
     if (!user) {
       return {
         errors: [
-          { field: "usernameOrEmail", message: "That username doesn't exists." },
+          {
+            field: "usernameOrEmail",
+            message: "That username doesn't exists.",
+          },
         ],
       };
     }
@@ -148,7 +232,7 @@ export class UserResolver {
         }
         //   res.cookie("qid", "", { expires: new Date() })
 
-        res.clearCookie("qid");
+        res.clearCookie(COOKIE_NAME);
         console.log("cookie deleted");
         resolve(true);
       })

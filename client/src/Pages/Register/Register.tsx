@@ -84,7 +84,7 @@ const Register = () => {
                   errorMessage={
                     errors.username?.message
                       ? errors.username?.message
-                      : "Invalid userName"
+                      : "Invalid email"
                   }
                   fieldToRegister={`email`}
                   placeHolder="email"

@@ -50,7 +50,8 @@ const SignUpWrapper = styled.div`
   .form-div {
     border-radius: 10px;
     width: 22rem;
-    height: 25rem;
+    // height: 25rem;
+    height: fit-content;
     font-family: "Montserrat", sans-serif;
     margin-top: -2rem;
   }

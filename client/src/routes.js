@@ -3,5 +3,6 @@ export const Pages = {
     LOGIN: '/login',
     REGISTER: '/register',
     EDIT_PROFILE: '/profile',
-    DASHBOARD: '/dashboard'
+    DASHBOARD: '/dashboard',
+    CHANGE_PASSWORD: '/change-password/:token_id'
 };

@@ -73,7 +73,7 @@ const Login: React.FC<EditProfileInputs> = () => {
                   fieldToRegister={`usernameOrEmail`}
                   placeHolder="username or email"
                   required={true}
-                  // pattern={regex.userName}
+                  // pattern={regex.userName || regex.email}
                 />
 
                 <InputField

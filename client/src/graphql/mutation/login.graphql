@@ -1,15 +1,10 @@
 mutation Login($usernameOrEmail: String!, $password: String!) {
   login(usernameOrEmail: $usernameOrEmail, password: $password) {
     errors {
-      field
-      message
+      ...RegularError
     }
     user {
-      id
-      username
-      email
-      created_at
-      updated_at
+      ...RegularUser
     }
   }
 }

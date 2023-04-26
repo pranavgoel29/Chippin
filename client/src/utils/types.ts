@@ -12,6 +12,7 @@ export type EditProfileInputs = {
   email?: string;
   phoneNumber?: string;
   usernameOrEmail?: string;
+  newPassword?:string;
 };
 
 export type FormRegisterInputs = EditProfileInputs;

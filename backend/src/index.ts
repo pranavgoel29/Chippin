@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { MikroORM } from "@mikro-orm/core";
-import { __prod__ } from "./constants";
+import { COOKIE_NAME, __prod__ } from "./constants";
 import microConfig from "./mikro-orm.config";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
@@ -10,7 +10,10 @@ import { PostResolver } from "./resolvers/post";
 import { UserResolver } from "./resolvers/user";
 import connectRedis from "connect-redis";
 import session from "express-session";
-import { createClient } from "redis";
+
+import redis from "ioredis";
+
+// import { createClient } from "redis";
 
 // import { MyContext } from "./resolvers/types";
 
@@ -31,10 +34,11 @@ const main = async () => {
 
   // remove (session), it is deperecated in the V7 of reddis-connect.
   const RedisStore = connectRedis;
-  const redisClient = createClient();
+  const redisClient = new redis();
+  // const redisClient = createClient();
 
-  // Add 'await connect()' to remove the Error: The client is closed error.
-  await redisClient.connect();
+  // // Add 'await connect()' to remove the Error: The client is closed error.
+  // await redisClient.connect();
 
   // Comment this out when using the apollo Provider
   // app.use(
@@ -47,7 +51,7 @@ const main = async () => {
   // Session middleware should always come before apollo middleware in this configuration.
   app.use(
     session({
-      name: "qid",
+      name: COOKIE_NAME,
       // WE can add how long will the data last in the redis.
       store: new RedisStore({
         client: redisClient,
@@ -77,7 +81,7 @@ const main = async () => {
 
     // context is a speacial object that is acessible by all of our resolvers.
     // Adding ': MyContext' for types checking.
-    context: ({ req, res }) => ({ em: emFork, req, res }),
+    context: ({ req, res }) => ({ em: emFork, req, res, redisClient }),
   });
 
   await apolloserver.start();
