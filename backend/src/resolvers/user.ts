@@ -57,13 +57,14 @@ export class UserResolver {
       };
     }
 
+    const key = FORGET_PASSWORD_PREFIX + token;
     // Looking up the token in redis
-    const userId = await redisClient.get(FORGET_PASSWORD_PREFIX + token);
+    const userId = await redisClient.get(key);
     if (!userId) {
       return {
         errors: [
           {
-            field: "token",
+            field: "newPassword",
             message: "Token Expired",
           },
         ],
@@ -76,7 +77,7 @@ export class UserResolver {
       return {
         errors: [
           {
-            field: "token",
+            field: "newPassword",
             message: "User no longer exists",
           },
         ],
@@ -85,6 +86,9 @@ export class UserResolver {
 
     user.password = await argon2.hash(newPassword);
     await em.persistAndFlush(user);
+
+    await redisClient.del(key);
+    console.log("delete", redisClient.del(key));
 
     // login the user after the password has been set
     req.session.userId = user.id;

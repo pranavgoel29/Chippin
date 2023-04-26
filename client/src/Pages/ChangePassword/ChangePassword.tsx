@@ -9,14 +9,12 @@ import {
 } from "../../utils/types";
 // import { regex } from "../../utils";
 
-import {
-  useChangePasswordMutation,
-  useLoginMutation,
-} from "../../generated/graphql";
-import { useNavigate, useParams } from "react-router-dom";
+import { useChangePasswordMutation } from "../../generated/graphql";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getFieldMap, getMessageMap } from "../../utils/toErrorMap";
 import SignUpWrapper from "../../common/SignUpWrapper";
 import { Pages } from "../../routes";
+import theme from "../../styles/theme";
 
 const ChangePassword: React.FC<EditProfileInputs> = () => {
   const navigate = useNavigate();
@@ -88,7 +86,14 @@ const ChangePassword: React.FC<EditProfileInputs> = () => {
                   placeHolder="Password"
                   required={true}
                 />
-
+                <div className="createNewLink" style={{ marginTop: "25px" }}>
+                  <Link
+                    to={Pages.FORGOT_PASSWORD}
+                    style={{ color: `${theme.gray}`, fontSize: "12px" }}
+                  >
+                    Click here to get a new one
+                  </Link>
+                </div>
                 <button type="submit" className="form-button">
                   Change Password
                 </button>

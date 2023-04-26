@@ -173,6 +173,10 @@ const SignUpWrapper = styled.div`
     text-decoration: none;
   }
 
+  .createNewLink:hover {
+    text-decoration: underline;
+  }
+
   @media (max-width: 750px) {
     .sub-div1 {
       display: none;

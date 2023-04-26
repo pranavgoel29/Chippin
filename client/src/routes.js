@@ -6,5 +6,6 @@ export const Pages = {
     EDIT_PROFILE: '/profile',
     DASHBOARD: '/dashboard',
     USER_DETAILS:'/userdetails',
+    FORGOT_PASSWORD: '/forgot-password',
     CHANGE_PASSWORD: '/change-password/:token_id'
 };

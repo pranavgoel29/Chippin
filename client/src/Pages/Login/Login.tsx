@@ -10,10 +10,11 @@ import {
 import { regex } from "../../utils";
 
 import { useLoginMutation } from "../../generated/graphql";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getFieldMap, getMessageMap } from "../../utils/toErrorMap";
 import SignUpWrapper from "../../common/SignUpWrapper";
 import { Pages } from "../../routes";
+import theme from "../../styles/theme";
 
 const Login: React.FC<EditProfileInputs> = () => {
   const navigate = useNavigate();
@@ -97,6 +98,14 @@ const Login: React.FC<EditProfileInputs> = () => {
             >
               Login
             </Button> */}
+                <div className="createNewLink" style={{ marginTop: "25px" }}>
+                  <Link
+                    to={Pages.FORGOT_PASSWORD}
+                    style={{ color: `${theme.gray}`, fontSize: "12px" }}
+                  >
+                    Forgot Password?
+                  </Link>
+                </div>
                 <button type="submit" className="form-button">
                   Login
                 </button>

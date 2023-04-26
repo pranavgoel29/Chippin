@@ -23,6 +23,7 @@ const theme = {
     white: '#FFFFFF',
     light_beige: '#FFF8DD',
     dark_beige: '#FFD662',
-    light_gray: '#a7a7a7'
+    light_gray: '#a7a7a7',
+    gray: '#787878'
 };
 export default theme;

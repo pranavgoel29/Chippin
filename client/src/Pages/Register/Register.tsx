@@ -82,8 +82,8 @@ const Register = () => {
                   register={register as UseFormRegister<FormRegisterInputs>}
                   errors={errors}
                   errorMessage={
-                    errors.username?.message
-                      ? errors.username?.message
+                    errors.email?.message
+                      ? errors.email?.message
                       : "Invalid email"
                   }
                   fieldToRegister={`email`}
