@@ -43,7 +43,7 @@ const Register = () => {
       );
     } else if (response.data?.register.user) {
       // Worked
-      navigate("/");
+      navigate(Pages.HOME);
     }
   };
 

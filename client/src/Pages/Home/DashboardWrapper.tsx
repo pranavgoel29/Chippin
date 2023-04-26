@@ -23,10 +23,11 @@ const DashboardWrapper = styled.div`
     // border-radius: 30px;
     padding-left: 3.125rem;
     flex-direction: column;
-    border-right: 2px solid ${theme.backgroundAccentColor}
+    border-right: 2px solid ${theme.backgroundAccentColor};
   }
   .page-body-div2 {
     margin-left: 1rem !important;
+    padding: 30px;
     // margin: 3rem;
     height: 90%;
     width: 77%;
@@ -62,19 +63,44 @@ const DashboardWrapper = styled.div`
     margin-top: 3.75rem;
     font-family: "Montserrat", sans-serif;
   }
-  .div1-sub1-li {
+
+  .dashboardRightContainer {
+    padding: 30px;
+    h2 {
+      color: ${theme.light_beige};
+      font-size: ${theme.heading4} !important;
+    }
+  }
+
+  .div1-sub1-li-username {
+    cursor: default;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
     color: #ffffff;
     margin-bottom: 2.5rem;
+    padding: 10px;
+  }
+
+  .div1-sub1-li {
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    margin-right: 16px;
+    padding: 10px 0px 10px 20px;
+    border-radius: 12px;
   }
   .def {
     font-weight: 700;
   }
   .div1-sub1-li:hover {
     font-weight: 700;
+    background-color: ${theme.backgroundAccentColor};
   }
   .div1-sub2 {
     font-family: "Montserrat", sans-serif;

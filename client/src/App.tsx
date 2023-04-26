@@ -18,6 +18,7 @@ import {
   RegisterMutation,
 } from "./generated/graphql";
 import ChangePassword from "./Pages/ChangePassword/ChangePassword";
+import UserDetails from "./Pages/Home/UserDetails";
 
 function betterUpdateQuery<Result, Query>(
   cache: Cache,
@@ -92,10 +93,12 @@ const client = new Client({
 });
 
 const router = createBrowserRouter([
-  { path: Pages.HOME, element: <Home /> },
+  // { path: Pages.HOME, element: <Home /> },
+  { path: Pages.HOME, element: <Dashboard /> },
   { path: Pages.LOGIN, element: <Login /> },
   { path: Pages.REGISTER, element: <Register /> },
   { path: Pages.DASHBOARD, element: <Dashboard /> },
+  { path: Pages.USER_DETAILS, element: <UserDetails /> },
   { path: Pages.CHANGE_PASSWORD, element: <ChangePassword /> },
 ]);
 

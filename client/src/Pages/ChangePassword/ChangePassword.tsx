@@ -57,7 +57,7 @@ const ChangePassword: React.FC<EditProfileInputs> = () => {
     } else if (response.data?.changePassword.user) {
       // Worked
       console.log("not error");
-      navigate("/");
+      navigate(Pages.HOME);
     }
   };
 

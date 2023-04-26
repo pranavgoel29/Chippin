@@ -43,7 +43,7 @@ const Login: React.FC<EditProfileInputs> = () => {
     } else if (response.data?.login.user) {
       // Worked
       console.log("not error");
-      navigate("/");
+      navigate(Pages.HOME);
     }
   };
 

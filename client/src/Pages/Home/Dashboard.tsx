@@ -8,8 +8,11 @@ import user from "../../images/user.png";
 import transaction from "../../images/transaction.png";
 import { useMeQuery } from "../../generated/graphql";
 import { Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Pages } from "../../routes";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [{ data, fetching, error }] = useMeQuery();
 
   let body: any = "";
@@ -21,18 +24,11 @@ const Dashboard = () => {
   } else if (!data?.me) {
     //user is logged in
     console.log(data);
+    navigate(Pages.LOGIN);
     // console.log(error)
-    body = (
-      <Grid className="userDetails">
-        <p style={{ color: "black" }}>Hii everyone</p>
-      </Grid>
-    );
+    body = "";
   } else {
-    body = (
-      <p>
-        <b>{data.me.username}</b>
-      </p>
-    );
+    body = <i>{data.me.username}</i>;
   }
 
   return (
@@ -41,15 +37,23 @@ const Dashboard = () => {
         <div className="div1-sub1">
           <h1 className="div1-sub1-h1">Chippin.</h1>
           <ul className="div1-sub1-ul">
-            {body}
-            <li className="div1-sub1-li def">
+            <div className="div1-sub1-li-username">
+              <b>Username: {body}</b>
+            </div>
+            <li
+              className="div1-sub1-li def"
+              onClick={() => navigate(Pages.DASHBOARD)}
+            >
               <img className="icon" src={dashboard}></img>Dashboard
             </li>
             <li className="div1-sub1-li">
               <img className="icon" src={transaction}></img>Transactions
             </li>
 
-            <li className="div1-sub1-li">
+            <li
+              className="div1-sub1-li"
+              onClick={() => navigate(Pages.USER_DETAILS)}
+            >
               <img className="icon" src={user}></img>User
             </li>
             {/* <li className="div1-sub1-li">
@@ -62,7 +66,9 @@ const Dashboard = () => {
           <p className="div1-sub2-bottom1">Contact us</p>
         </div>
       </div>
-      <div className="page-body-div2">hii</div>
+      <div className="page-body-div2 dashboardRightContainer">
+        <h2>Dashboard</h2>
+      </div>
     </DashboardWrapper>
   );
 };
