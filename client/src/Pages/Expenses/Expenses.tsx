@@ -13,6 +13,7 @@ import DashboardWrapper from "../../common/DashboardWrapper";
 
 import CreateExpense from "./CreateExpense";
 import ListExpenses from "./ListExpenses";
+import ExpensesCalc from "./ExpensesCalc";
 
 const Expenses = () => {
   const navigate = useNavigate();
@@ -65,7 +66,10 @@ const Expenses = () => {
       </div>
       <div className="page-body-div2 dashboardRightContainer expensesRightContainer">
         <h2 className="rightSectionHeading">Expenses</h2>
-        <CreateExpense />
+        <div style={{ display: "flex", gap:'40px', height:'340px' }}>
+          <CreateExpense />
+          <ExpensesCalc />
+        </div>
         <ListExpenses />
       </div>
     </DashboardWrapper>

@@ -10,6 +10,7 @@ import ButtonWrapper from "../../common/ButtonWrapper";
 const ListExpensesWrapper = styled.div`
   padding: 20px 0px 20px 0px;
   margin-top: 20px;
+  height: 100%;
   .expenseCard {
     background-color: ${theme.expenseCardBackgroundAccentColor};
     color: ${theme.button_font};
@@ -42,6 +43,17 @@ const ListExpenses = () => {
     <ListExpensesWrapper>
       {!data && fetching ? (
         <h3>Loading...</h3>
+      ) : expenses?.length == 0 ? (
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h2>{body}</h2>
+        </div>
       ) : (
         data!.expenses.map((exp) => (
           <div className="expenseCard" key={exp.id}>

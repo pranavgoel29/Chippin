@@ -25,8 +25,8 @@ const CreateExpenseWrapper = styled.div`
   border-radius: 24px;
   padding: 40px;
   background-color: ${theme.cardBackgroundAccentColor};
-  min-width: 240px;
-  max-width: 300px;
+  min-width: 300px;
+  max-width: 340px;
 
   .createExpenseHeading {
     color: ${theme.dark_beige};
