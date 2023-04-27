@@ -8,9 +8,11 @@ import {
   Field,
   Ctx,
   UseMiddleware,
+  Int,
 } from "type-graphql";
 import { MyContext } from "./types";
 import { isAuth } from "../middleware/isAuth";
+import { connData } from "../index";
 
 @InputType()
 class ExpenseInput {
@@ -26,9 +28,23 @@ export class ExpenseResolver {
   // All Expenses query
   @Query(() => [Expense])
   // destructuring the ctx as it will provide cleaner syntax.
-  async expenses(): Promise<Expense[]> {
+  async expenses(
+    // @Arg("limit", () => Int) limit: number,
+    @Arg("user_id", () => Int) user_id: number
+  ): Promise<Expense[]> {
     // find will return a promise of expenses.
-    return Expense.find();
+    // return Expense.find();
+
+    // const realLimit = Math.min(50, limit);
+    const qb = await connData.getRepository(Expense).createQueryBuilder("p");
+
+    if (user_id) {
+      qb.where("creator_id = :user_id", {
+        user_id,
+      });
+    }
+
+    return qb.getMany();
   }
 
   // Single Expense query
@@ -51,7 +67,7 @@ export class ExpenseResolver {
     @Arg("input") input: ExpenseInput, // The string type will get Infered here.
     @Ctx() { req }: MyContext
   ): Promise<Expense> {
-    return Expense.create({ ...input, creatorId: req.session.userId }).save();
+    return Expense.create({ ...input, creator_id: req.session.userId }).save();
   }
 
   // Updating Expense

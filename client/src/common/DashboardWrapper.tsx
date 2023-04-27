@@ -13,6 +13,11 @@ const DashboardWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  .expensesRightContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
   .page-body-div1 {
     // background-color: black;
     // margin: 2.5rem;
@@ -36,6 +41,10 @@ const DashboardWrapper = styled.div`
   align-items: center; */
     // border-radius: 30px;
     margin-right: 1.15rem;
+
+    .rightSectionHeading {
+      margin-bottom: 20px;
+    }
   }
   .div1-sub1-h1 {
     font-size: 36px;

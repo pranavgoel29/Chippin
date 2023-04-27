@@ -70,7 +70,7 @@ const Dashboard = () => {
         </div> */}
       </div>
       <div className="page-body-div2 dashboardRightContainer">
-        <h2>Dashboard</h2>
+        <h2 className="rightSectionHeading">Dashboard</h2>
       </div>
     </DashboardWrapper>
   );

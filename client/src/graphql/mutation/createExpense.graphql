@@ -3,7 +3,7 @@ mutation CreateExpense($input: ExpenseInput!) {
     id
     title
     price
-    creatorId
+    creator_id
     created_at
     updated_at
   }

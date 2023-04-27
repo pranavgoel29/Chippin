@@ -62,7 +62,8 @@ const Expenses = () => {
           </ul>
         </div>
       </div>
-      <div className="page-body-div2">
+      <div className="page-body-div2 dashboardRightContainer expensesRightContainer">
+        <h2 className="rightSectionHeading">Expenses</h2>
         <CreateExpense />
       </div>
     </DashboardWrapper>

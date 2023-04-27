@@ -29,7 +29,7 @@ export class Expense extends BaseEntity {
 
   @Field()
   @Column()
-  creatorId: number;
+  creator_id: number;
 
   @ManyToOne(() => User, (user) => user.expenses)
   creator: User;

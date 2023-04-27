@@ -18,7 +18,7 @@ export type Scalars = {
 export type Expense = {
   __typename?: 'Expense';
   created_at: Scalars['String'];
-  creatorId: Scalars['Float'];
+  creator_id: Scalars['Float'];
   id: Scalars['Float'];
   price: Scalars['String'];
   title: Scalars['String'];
@@ -99,6 +99,11 @@ export type QueryExpenseArgs = {
   id: Scalars['Float'];
 };
 
+
+export type QueryExpensesArgs = {
+  user_id: Scalars['Int'];
+};
+
 export type User = {
   __typename?: 'User';
   created_at: Scalars['String'];
@@ -137,7 +142,7 @@ export type CreateExpenseMutationVariables = Exact<{
 }>;
 
 
-export type CreateExpenseMutation = { __typename?: 'Mutation', createExpense: { __typename?: 'Expense', id: number, title: string, price: string, creatorId: number, created_at: string, updated_at: string } };
+export type CreateExpenseMutation = { __typename?: 'Mutation', createExpense: { __typename?: 'Expense', id: number, title: string, price: string, creator_id: number, created_at: string, updated_at: string } };
 
 export type ForgotPasswordMutationVariables = Exact<{
   email: Scalars['String'];
@@ -165,6 +170,13 @@ export type RegisterMutationVariables = Exact<{
 
 
 export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename?: 'User', id: number, username: string, email: string, created_at: string, updated_at: string } | null } };
+
+export type ExpensesQueryVariables = Exact<{
+  user_id: Scalars['Int'];
+}>;
+
+
+export type ExpensesQuery = { __typename?: 'Query', expenses: Array<{ __typename?: 'Expense', id: number, creator_id: number, title: string, price: string, created_at: string, updated_at: string }> };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -209,7 +221,7 @@ export const CreateExpenseDocument = gql`
     id
     title
     price
-    creatorId
+    creator_id
     created_at
     updated_at
   }
@@ -270,6 +282,22 @@ ${RegularUserFragmentDoc}`;
 
 export function useRegisterMutation() {
   return Urql.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument);
+};
+export const ExpensesDocument = gql`
+    query Expenses($user_id: Int!) {
+  expenses(user_id: $user_id) {
+    id
+    creator_id
+    title
+    price
+    created_at
+    updated_at
+  }
+}
+    `;
+
+export function useExpensesQuery(options: Omit<Urql.UseQueryArgs<ExpensesQueryVariables>, 'query'>) {
+  return Urql.useQuery<ExpensesQuery, ExpensesQueryVariables>({ query: ExpensesDocument, ...options });
 };
 export const MeDocument = gql`
     query Me {

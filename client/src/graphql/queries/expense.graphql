@@ -1,0 +1,10 @@
+query Expenses($user_id: Int!){
+  expenses(user_id: $user_id) {
+    id
+    creator_id
+    title
+    price
+    created_at
+    updated_at
+  }
+}
