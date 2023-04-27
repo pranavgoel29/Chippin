@@ -14,6 +14,8 @@ import redis from "ioredis";
 import { DataSource } from "typeorm";
 import { User } from "./entities/User";
 import { Expense } from "./entities/Expense";
+import { Budget } from "./entities/Budget";
+import { BudgetResolver } from "./resolvers/budget";
 
 // import { createClient } from "redis";
 
@@ -40,7 +42,7 @@ export const connData = new DataSource({
   password: "admin",
   logging: true,
   synchronize: true,
-  entities: [Expense, User],
+  entities: [Expense, User, Budget],
 });
 
 const main = async () => {
@@ -104,7 +106,7 @@ const main = async () => {
 
   const apolloserver = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloResolver, ExpenseResolver, UserResolver],
+      resolvers: [HelloResolver, ExpenseResolver, UserResolver, BudgetResolver],
       validate: false,
     }),
     introspection: true,

@@ -7,9 +7,11 @@ import dashboard from "../../images/dashboard.png";
 import user from "../../images/user.png";
 import transaction from "../../images/transaction.png";
 import { useMeQuery } from "../../generated/graphql";
-import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Pages } from "../../routes";
+import CreateBudget from "../Budgets/CreateBudget";
+import ListBudget from "../Budgets/ListBudget";
+import BudgetsCalc from "../Budgets/BudgetCalc";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -69,8 +71,13 @@ const Dashboard = () => {
           <p className="div1-sub2-bottom1">Contact us</p>
         </div> */}
       </div>
-      <div className="page-body-div2 dashboardRightContainer">
+      <div className="page-body-div2 dashboardRightContainer expensesRightContainer">
         <h2 className="rightSectionHeading">Dashboard</h2>
+        <div style={{ display: "flex", gap: "40px" }}>
+          <CreateBudget />
+          <BudgetsCalc />
+        </div>
+        <ListBudget />
       </div>
     </DashboardWrapper>
   );

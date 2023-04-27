@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { ObjectType, Field } from "type-graphql";
 import { Expense } from "./Expense";
+import { Budget } from "./Budget";
 
 @ObjectType()
 @Entity()
@@ -31,6 +32,9 @@ export class User extends BaseEntity {
 
   @OneToMany(() =>Expense, (expense) => expense.creator)
   expenses: Expense[];
+
+  @OneToMany(() =>Budget, (budget) => budget.creator)
+  budgets: Budget[];
 
   @Field(() => String)
   @CreateDateColumn()
