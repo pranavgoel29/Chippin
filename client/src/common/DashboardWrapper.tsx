@@ -39,9 +39,9 @@ const DashboardWrapper = styled.div`
   }
   .page-body-div2 {
     margin-left: 1rem !important;
-    padding: 30px;
+    padding: 0px 30px 0px 30px;
     // margin: 3rem;
-    height: 85%;
+    height: 90%;
     width: 77%;
     display: flex;
     /* justify-content: center;
@@ -81,7 +81,7 @@ const DashboardWrapper = styled.div`
   }
 
   .dashboardRightContainer {
-    padding: 30px;
+    padding: 0px 30px 0px 30px;
     h2 {
       color: ${theme.light_beige};
       font-size: ${theme.heading4} !important;
