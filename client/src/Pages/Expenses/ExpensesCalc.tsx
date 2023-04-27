@@ -68,7 +68,7 @@ const ExpensesCalc = () => {
             </div>
             <div className="subDetails">
               <h3>Total Expense:</h3>
-              <p>{total}</p>
+              <p>₹{total}</p>
             </div>
           </div>
         </div>
