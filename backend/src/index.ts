@@ -4,7 +4,7 @@ import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { HelloResolver } from "./resolvers/hello";
-import { PostResolver } from "./resolvers/post";
+import { ExpenseResolver } from "./resolvers/expense";
 import { UserResolver } from "./resolvers/user";
 import connectRedis from "connect-redis";
 import session from "express-session";
@@ -13,7 +13,7 @@ import redis from "ioredis";
 
 import { DataSource } from "typeorm";
 import { User } from "./entities/User";
-import { Post } from "./entities/Post";
+import { Expense } from "./entities/Expense";
 
 // import { createClient } from "redis";
 
@@ -40,12 +40,15 @@ export const connData = new DataSource({
   password: "admin",
   logging: true,
   synchronize: true,
-  entities: [Post, User],
+  entities: [Expense, User],
 });
 
 const main = async () => {
   const conn = await connData;
   await conn.initialize();
+
+  // To delete a certain thing in the db, turn synchronize as false when doing this.
+  // await Expense.delete({})
 
   // const orm = await MikroORM.init(microConfig);
   // await orm.getMigrator().up();
@@ -101,7 +104,7 @@ const main = async () => {
 
   const apolloserver = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloResolver, PostResolver, UserResolver],
+      resolvers: [HelloResolver, ExpenseResolver, UserResolver],
       validate: false,
     }),
     introspection: true,
@@ -118,8 +121,8 @@ const main = async () => {
     // Adding this to handle cross origin requests that will be going to the apollo studio.
 
     cors: {
-      // origin: ["https://studio.apollographql.com"],
-      origin: ["http://127.0.0.1:5173"],
+      origin: ["https://studio.apollographql.com", "http://127.0.0.1:5173"],
+      // origin: ["http://127.0.0.1:5173"],
       // origin: ["https://chippin.vercel.app"],
       credentials: true,
     },

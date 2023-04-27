@@ -14,7 +14,9 @@ export const InputWrapper = styled.div`
 
     background-color: rgba(71, 84, 103, 0.05);
 
-    margin-top: 2px;
+    color: white;
+
+    margin-top: 3px;
 
     width: 100%;
     height: 40px;

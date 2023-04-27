@@ -1,31 +1,34 @@
 import React from "react";
-import DashboardWrapper from "../../common/DashboardWrapper";
-// import schedule from "../../images/schedule.png";
-// import setting from "../../images/setting.png";
+
+import { useMeQuery } from "../../generated/graphql";
 
 import dashboard from "../../images/dashboard.png";
 import user from "../../images/user.png";
 import transaction from "../../images/transaction.png";
-import { useMeQuery } from "../../generated/graphql";
-import { Grid } from "@mui/material";
+
 import { useNavigate } from "react-router-dom";
 import { Pages } from "../../routes";
 
-const Dashboard = () => {
+import DashboardWrapper from "../../common/DashboardWrapper";
+
+import CreateExpense from "./CreateExpense";
+
+const Expenses = () => {
   const navigate = useNavigate();
   const [{ data, fetching, error }] = useMeQuery();
 
   let body: any = "";
 
+  console.log(data);
+
   if (fetching) {
     // User not logged in
-    // console.log(data);
+
     body = null;
   } else if (!data?.me) {
     //user is logged in
     console.log(data);
     navigate(Pages.LOGIN);
-    // console.log(error)
     body = "";
   } else {
     body = <i>{data.me.username}</i>;
@@ -46,10 +49,7 @@ const Dashboard = () => {
             >
               <img className="icon" src={dashboard}></img>Dashboard
             </li>
-            <li
-              className="div1-sub1-li"
-              onClick={() => navigate(Pages.EXPENSES)}
-            >
+            <li className="div1-sub1-li">
               <img className="icon" src={transaction}></img>Expenses
             </li>
 
@@ -59,21 +59,14 @@ const Dashboard = () => {
             >
               <img className="icon" src={user}></img>User
             </li>
-            {/* <li className="div1-sub1-li">
-              <img className="icon" src={setting}></img>Settings
-            </li> */}
           </ul>
         </div>
-        {/* <div className="div1-sub2">
-          <p className="div1-sub2-bottom">Help</p>
-          <p className="div1-sub2-bottom1">Contact us</p>
-        </div> */}
       </div>
-      <div className="page-body-div2 dashboardRightContainer">
-        <h2>Dashboard</h2>
+      <div className="page-body-div2">
+        <CreateExpense />
       </div>
     </DashboardWrapper>
   );
 };
 
-export default Dashboard;
+export default Expenses;

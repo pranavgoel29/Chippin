@@ -5,8 +5,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { ObjectType, Field } from "type-graphql";
+import { Expense } from "./Expense";
 
 @ObjectType()
 @Entity()
@@ -26,6 +28,9 @@ export class User extends BaseEntity {
 
   @Column()
   password!: string;
+
+  @OneToMany(() =>Expense, (expense) => expense.creator)
+  expenses: Expense[];
 
   @Field(() => String)
   @CreateDateColumn()

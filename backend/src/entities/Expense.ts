@@ -6,11 +6,13 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
 } from "typeorm";
+import { User } from "./User";
 
 @ObjectType()
 @Entity()
-export class Post extends BaseEntity {
+export class Expense extends BaseEntity {
   // 'Field' exposes the data for the query, removing it will result in not able to query it.
   // @Field(() => Int)
   @Field()
@@ -20,6 +22,17 @@ export class Post extends BaseEntity {
   @Field()
   @Column()
   title!: string;
+
+  @Field()
+  @Column()
+  price!: number;
+
+  @Field()
+  @Column()
+  creatorId: number;
+
+  @ManyToOne(() => User, (user) => user.expenses)
+  creator: User;
 
   @Field(() => String)
   @CreateDateColumn()

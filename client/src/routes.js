@@ -5,7 +5,8 @@ export const Pages = {
     REGISTER: '/register',
     EDIT_PROFILE: '/profile',
     DASHBOARD: '/dashboard',
-    USER_DETAILS:'/userdetails',
+    EXPENSES: '/expenses',
+    USER_DETAILS: '/userdetails',
     FORGOT_PASSWORD: '/forgot-password',
     CHANGE_PASSWORD: '/change-password/:token_id'
 };

@@ -7,7 +7,6 @@ import {
   FormRegisterInputs,
   HTMLInputTypes,
 } from "../../utils/types";
-import { regex } from "../../utils";
 
 import { useLoginMutation } from "../../generated/graphql";
 import { Link, useNavigate } from "react-router-dom";

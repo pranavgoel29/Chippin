@@ -11,7 +11,7 @@ import transaction from "../../images/transaction.png";
 import { useNavigate } from "react-router-dom";
 import { Pages } from "../../routes";
 import SignUpWrapper from "../../common/SignUpWrapper";
-import DashboardWrapper from "./DashboardWrapper";
+import DashboardWrapper from "../../common/DashboardWrapper";
 import theme from "../../styles/theme";
 
 const HomeWrapper = styled.div`
@@ -110,8 +110,11 @@ const UserDetails = () => {
             >
               <img className="icon" src={dashboard}></img>Dashboard
             </li>
-            <li className="div1-sub1-li">
-              <img className="icon" src={transaction}></img>Transactions
+            <li
+              className="div1-sub1-li"
+              onClick={() => navigate(Pages.EXPENSES)}
+            >
+              <img className="icon" src={transaction}></img>Expenses
             </li>
 
             <li

@@ -17,12 +17,16 @@ const theme = {
     // Colors
     backgroundColor: '#242529',
     backgroundAccentColor: '#363538',
+    cardBackgroundAccentColor: '#393939',
+    cardInputColor: '#515151',
     primaryColor: '#1D2939',
     secondaryColor: '#F9EED2',
     tertiaryColor: '#00A388',
     white: '#FFFFFF',
     light_beige: '#FFF8DD',
     dark_beige: '#FFD662',
+    button_dark_beige: '#ffc72d',
+    button_font: '#3c3c3c',
     light_gray: '#a7a7a7',
     gray: '#787878'
 };

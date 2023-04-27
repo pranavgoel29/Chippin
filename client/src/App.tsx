@@ -20,6 +20,7 @@ import {
 import ChangePassword from "./Pages/ChangePassword/ChangePassword";
 import UserDetails from "./Pages/Home/UserDetails";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
+import Expenses from "./Pages/Expenses/Expenses";
 
 function betterUpdateQuery<Result, Query>(
   cache: Cache,
@@ -99,6 +100,7 @@ const router = createBrowserRouter([
   { path: Pages.LOGIN, element: <Login /> },
   { path: Pages.REGISTER, element: <Register /> },
   { path: Pages.DASHBOARD, element: <Dashboard /> },
+  { path: Pages.EXPENSES, element: <Expenses /> },
   { path: Pages.USER_DETAILS, element: <UserDetails /> },
   { path: Pages.FORGOT_PASSWORD, element: <ForgotPassword /> },
   { path: Pages.CHANGE_PASSWORD, element: <ChangePassword /> },
