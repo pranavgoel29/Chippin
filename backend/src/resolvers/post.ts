@@ -1,16 +1,14 @@
 import { Post } from "../entities/Post";
-import { Resolver, Query, Ctx, Arg, Mutation } from "type-graphql";
-import { MyContext } from "./types";
-import { RequiredEntityData } from "@mikro-orm/core";
+import { Resolver, Query, Arg, Mutation } from "type-graphql";
 
 @Resolver()
 export class PostResolver {
   // All Posts query
   @Query(() => [Post])
   // destructuring the ctx as it will provide cleaner syntax.
-  posts(@Ctx() { em }: MyContext): Promise<Post[]> {
+  async posts(): Promise<Post[]> {
     // find will return a promise of posts.
-    return em.find(Post, {});
+    return Post.find();
   }
 
   // Single Post query
@@ -18,23 +16,20 @@ export class PostResolver {
   // destructuring the ctx as it will provide cleaner syntax.
   post(
     // Taking argument 'id' for returning a single post.
-    @Arg("id") id: number,
-    @Ctx() { em }: MyContext
-  ): Promise<Post | null> {
+    @Arg("id") id: number
+  ): Promise<Post | undefined> {
     // findOne will return a single one post, giving 'id' in curly braces simply says where id id equal to this.
-    return em.findOne(Post, { id });
+    //@ts-ignore
+    return Post.findOne({where:{id: id}});
   }
 
   // Creating Post
   @Mutation(() => Post)
   async createPost(
     // Taking argument 'title' for new post
-    @Arg("title") title: string, // The string type will get Infered here.
-    @Ctx() { em }: MyContext
+    @Arg("title") title: string // The string type will get Infered here.
   ): Promise<Post> {
-    const post = em.create(Post, { title } as RequiredEntityData<Post>);
-    await em.persistAndFlush(post);
-    return post;
+    return Post.create({ title }).save();
   }
 
   // Updating Post
@@ -42,33 +37,24 @@ export class PostResolver {
   async updatePost(
     @Arg("id") id: number,
     // For making a field optional we have to make it 'nullable' and to make it nullable, we have to exxplicitly set the type.
-    @Arg("title", () => String, { nullable: true }) title: string,
-    @Ctx() { em }: MyContext
+    @Arg("title", () => String, { nullable: true }) title: string
   ): Promise<Post | null> {
     // fetching the post to update.
-    const post = await em.findOne(Post, { id });
+    const post = await Post.findOne({where:{id: id}});
     if (!post) {
       // If we can't find the id of the post, means post is not there return 'null'.
       return null;
     }
     if (typeof title !== "undefined") {
-      post.title = title;
-      await em.persistAndFlush(post);
+      await Post.update({ id }, { title });
     }
     return post;
   }
 
   // Delete Post
   @Mutation(() => Boolean) // returning boolean to just get whether it worked or not.
-  async deletePost(
-    @Arg("id") id: number,
-    @Ctx() { em }: MyContext
-  ): Promise<boolean> {
-    try {
-      await em.nativeDelete(Post, { id });
-    } catch {
-      return false; // returning false if request failed/post not there.
-    }
+  async deletePost(@Arg("id") id: number): Promise<boolean> {
+    await Post.delete(id);
     return true;
   }
 }

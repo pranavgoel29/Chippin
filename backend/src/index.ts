@@ -1,7 +1,5 @@
 import "reflect-metadata";
-import { MikroORM } from "@mikro-orm/core";
 import { COOKIE_NAME, __prod__ } from "./constants";
-import microConfig from "./mikro-orm.config";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
@@ -13,18 +11,47 @@ import session from "express-session";
 
 import redis from "ioredis";
 
+import { DataSource } from "typeorm";
+import { User } from "./entities/User";
+import { Post } from "./entities/Post";
+
 // import { createClient } from "redis";
 
 // import { MyContext } from "./resolvers/types";
 
 // import cors from "cors";
 
-const main = async () => {
-  const orm = await MikroORM.init(microConfig);
-  await orm.getMigrator().up();
+// export const connData = async () => {
+//   return new DataSource({
+//     type: "postgres",
+//     database: "chippin",
+//     username: "postgres",
+//     password: "admin",
+//     logging: true,
+//     synchronize: true,
+//     entities: [Post, User],
+//   });
+// };
 
-  // We have to form it or otherwise Entity manager won't work.
-  const emFork = orm.em.fork();
+export const connData = new DataSource({
+  type: "postgres",
+  database: "chippin",
+  username: "postgres",
+  password: "admin",
+  logging: true,
+  synchronize: true,
+  entities: [Post, User],
+});
+
+const main = async () => {
+  const conn = await connData;
+  await conn.initialize();
+
+  // const orm = await MikroORM.init(microConfig);
+  // await orm.getMigrator().up();
+
+  // // We have to form it or otherwise Entity manager won't work.
+  // const emFork = orm.em.fork();
 
   const app = express();
   // If we want to ignore req, or any other variable we can make it underscore.
@@ -81,7 +108,7 @@ const main = async () => {
 
     // context is a speacial object that is acessible by all of our resolvers.
     // Adding ': MyContext' for types checking.
-    context: ({ req, res }) => ({ em: emFork, req, res, redisClient }),
+    context: ({ req, res }) => ({ req, res, redisClient }),
   });
 
   await apolloserver.start();
