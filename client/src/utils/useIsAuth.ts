@@ -8,7 +8,7 @@ export const useIsAuth = () => {
   const navigate = useNavigate();
   const [{ data, fetching }] = useMeQuery();
 
-  console.log(navigate);
+  // console.log(navigate);
 
   useEffect(() => {
     // Check if data is getting fetched and when fetched checking if user object is there or not, for login check.

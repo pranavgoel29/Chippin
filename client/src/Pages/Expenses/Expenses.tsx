@@ -20,7 +20,7 @@ const Expenses = () => {
 
   let body: any = "";
 
-  console.log(data);
+  // console.log(data);
 
   if (fetching) {
     // User not logged in
@@ -28,7 +28,7 @@ const Expenses = () => {
     body = null;
   } else if (!data?.me) {
     //user is logged in
-    console.log(data);
+    // console.log(data);
     navigate(Pages.LOGIN);
     body = "";
   } else {

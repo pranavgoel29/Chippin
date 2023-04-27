@@ -37,7 +37,7 @@ export class ExpenseResolver {
     // return Expense.find();
 
     // const realLimit = Math.min(50, limit);
-    const qb = await connData.getRepository(Expense).createQueryBuilder("p");
+    const qb = await connData.getRepository(Expense).createQueryBuilder("p").orderBy('created_at','DESC');
 
     if (req.session.userId) {
       qb.where("creator_id = :user_id", {

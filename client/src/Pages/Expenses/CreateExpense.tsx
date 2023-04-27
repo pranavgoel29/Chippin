@@ -14,7 +14,10 @@ import {
 
 import theme from "../../styles/theme";
 import styled from "styled-components";
-import { useCreateExpenseMutation } from "../../generated/graphql";
+import {
+  useCreateExpenseMutation,
+  useExpensesQuery,
+} from "../../generated/graphql";
 
 const CreateExpenseWrapper = styled.div`
   font-family: Montserrat;
@@ -50,7 +53,7 @@ const CreateExpenseWrapper = styled.div`
 
 const CreateExpense: React.FC<EditProfileInputs> = () => {
   useIsAuth();
-
+  const [, reexecute] = useExpensesQuery();
   const [, createExpense] = useCreateExpenseMutation();
   const {
     register,
@@ -63,6 +66,9 @@ const CreateExpense: React.FC<EditProfileInputs> = () => {
   const onSubmit: SubmitHandler<any> = async (fulldata) => {
     console.log(fulldata);
     await createExpense({ input: fulldata });
+
+    // Re-executing the query to update the expense list.
+    reexecute({ requestPolicy: "network-only" });
   };
 
   return (

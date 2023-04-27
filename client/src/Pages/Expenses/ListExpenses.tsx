@@ -18,7 +18,7 @@ const ListExpensesWrapper = styled.div`
 const ListExpenses = () => {
   const [{ data, fetching, error }] = useExpensesQuery();
   const expenses = data?.expenses;
-  console.log(data);
+  console.log("data: ", data);
 
   let body: any = "";
 
