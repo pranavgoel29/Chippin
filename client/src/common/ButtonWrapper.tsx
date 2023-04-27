@@ -3,7 +3,7 @@ import theme from "../styles/theme";
 
 const ButtonWrapper = styled.div`
   .form-button {
-    background: black;
+    background: ${theme.button_dark_beige};
     border-radius: 10px;
     border: none;
     height: 2.3rem;
@@ -16,7 +16,7 @@ const ButtonWrapper = styled.div`
     font-size: 16px;
     line-height: 20px;
     text-align: center;
-    color: #ffffff;
+    color: ${theme.button_font};
   }
 
   .form-button:hover {
