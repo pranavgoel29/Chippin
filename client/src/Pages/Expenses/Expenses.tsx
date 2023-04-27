@@ -66,7 +66,7 @@ const Expenses = () => {
       </div>
       <div className="page-body-div2 dashboardRightContainer expensesRightContainer">
         <h2 className="rightSectionHeading">Expenses</h2>
-        <div style={{ display: "flex", gap:'40px', height:'340px' }}>
+        <div style={{ display: "flex", gap:'40px', height:'343px' }}>
           <CreateExpense />
           <ExpensesCalc />
         </div>
