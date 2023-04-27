@@ -3,6 +3,9 @@ import { SubmitHandler, UseFormRegister, useForm } from "react-hook-form";
 import InputField from "../../common/Inputs";
 import Button from "@mui/material/Button";
 
+import { regex } from "../../utils";
+import { useIsAuth } from "../../utils/useIsAuth";
+
 import {
   EditProfileInputs,
   FormRegisterInputs,
@@ -11,6 +14,7 @@ import {
 
 import theme from "../../styles/theme";
 import styled from "styled-components";
+import { useCreateExpenseMutation } from "../../generated/graphql";
 
 const CreateExpenseWrapper = styled.div`
   font-family: Montserrat;
@@ -32,13 +36,21 @@ const CreateExpenseWrapper = styled.div`
     }
 
     .createExpenseButton {
-      margin-top: 10px;
+      // width: 100%;
+      margin-top: 20px;
       font-weight: 600;
+    }
+
+    .createExpenseButton:hover {
+      background-color: ${theme.button_dark_beige_hover} !important;
     }
   }
 `;
 
 const CreateExpense: React.FC<EditProfileInputs> = () => {
+  useIsAuth();
+
+  const [, createExpense] = useCreateExpenseMutation();
   const {
     register,
     handleSubmit,
@@ -49,6 +61,7 @@ const CreateExpense: React.FC<EditProfileInputs> = () => {
 
   const onSubmit: SubmitHandler<any> = async (fulldata) => {
     console.log(fulldata);
+    await createExpense({ input: fulldata });
   };
 
   return (
@@ -71,10 +84,11 @@ const CreateExpense: React.FC<EditProfileInputs> = () => {
           type={HTMLInputTypes.TEXT}
           register={register as UseFormRegister<FormRegisterInputs>}
           errors={errors}
-          errorMessage={"Field is required"}
+          errorMessage={"Invalid Value (only numbers)"}
           fieldToRegister={`price`}
           placeHolder="Price"
           required={true}
+          pattern={regex.number}
         />
         <Button
           type="submit"

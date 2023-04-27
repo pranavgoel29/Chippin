@@ -26,6 +26,7 @@ const theme = {
     light_beige: '#FFF8DD',
     dark_beige: '#FFD662',
     button_dark_beige: '#ffc72d',
+    button_dark_beige_hover: '#e3a600',
     button_font: '#3c3c3c',
     light_gray: '#a7a7a7',
     gray: '#787878'

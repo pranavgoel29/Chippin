@@ -1,0 +1,10 @@
+mutation CreateExpense($input: ExpenseInput!) {
+  createExpense(input: $input) {
+    id
+    title
+    price
+    creatorId
+    created_at
+    updated_at
+  }
+}

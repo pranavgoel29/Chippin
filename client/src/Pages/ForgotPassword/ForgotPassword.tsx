@@ -7,7 +7,7 @@ import {
   FormRegisterInputs,
   HTMLInputTypes,
 } from "../../utils/types";
-// import { regex } from "../../utils";
+
 
 import { useForgotPasswordMutation } from "../../generated/graphql";
 import SignUpWrapper from "../../common/SignUpWrapper";

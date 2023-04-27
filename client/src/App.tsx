@@ -2,7 +2,6 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyles";
 import { Pages } from "./routes";
-import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import Dashboard from "./Pages/Home/Dashboard";
@@ -14,7 +13,6 @@ import {
   LogoutMutation,
   MeDocument,
   MeQuery,
-  Query,
   RegisterMutation,
 } from "./generated/graphql";
 import ChangePassword from "./Pages/ChangePassword/ChangePassword";

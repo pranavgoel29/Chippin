@@ -3,6 +3,7 @@ import theme from "../styles/theme";
 
 const ButtonWrapper = styled.div`
   .form-button {
+    cursor: pointer;
     background: ${theme.button_dark_beige};
     border-radius: 10px;
     border: none;
@@ -20,8 +21,7 @@ const ButtonWrapper = styled.div`
   }
 
   .form-button:hover {
-    background: ${theme.primaryColor};
-    color: ${theme.secondaryColor};
+    background: ${theme.button_dark_beige_hover};
   }
 `;
 

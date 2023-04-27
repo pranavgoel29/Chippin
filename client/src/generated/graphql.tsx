@@ -15,6 +15,21 @@ export type Scalars = {
   Float: number;
 };
 
+export type Expense = {
+  __typename?: 'Expense';
+  created_at: Scalars['String'];
+  creatorId: Scalars['Float'];
+  id: Scalars['Float'];
+  price: Scalars['String'];
+  title: Scalars['String'];
+  updated_at: Scalars['String'];
+};
+
+export type ExpenseInput = {
+  price: Scalars['String'];
+  title: Scalars['String'];
+};
+
 export type FieldError = {
   __typename?: 'FieldError';
   field: Scalars['String'];
@@ -24,13 +39,13 @@ export type FieldError = {
 export type Mutation = {
   __typename?: 'Mutation';
   changePassword: UserResponse;
-  createPost: Post;
-  deletePost: Scalars['Boolean'];
+  createExpense: Expense;
+  deleteExpense: Scalars['Boolean'];
   forgotPassword: Scalars['Boolean'];
   login: UserResponse;
   logout: Scalars['Boolean'];
   register: UserResponse;
-  updatePost?: Maybe<Post>;
+  updateExpense?: Maybe<Expense>;
 };
 
 
@@ -40,12 +55,12 @@ export type MutationChangePasswordArgs = {
 };
 
 
-export type MutationCreatePostArgs = {
-  title: Scalars['String'];
+export type MutationCreateExpenseArgs = {
+  input: ExpenseInput;
 };
 
 
-export type MutationDeletePostArgs = {
+export type MutationDeleteExpenseArgs = {
   id: Scalars['Float'];
 };
 
@@ -66,29 +81,21 @@ export type MutationRegisterArgs = {
 };
 
 
-export type MutationUpdatePostArgs = {
+export type MutationUpdateExpenseArgs = {
   id: Scalars['Float'];
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type Post = {
-  __typename?: 'Post';
-  createdAt: Scalars['String'];
-  id: Scalars['Int'];
-  title: Scalars['String'];
-  updatedAt: Scalars['String'];
-};
-
 export type Query = {
   __typename?: 'Query';
+  expense?: Maybe<Expense>;
+  expenses: Array<Expense>;
   hello: Scalars['String'];
   me?: Maybe<User>;
-  post?: Maybe<Post>;
-  posts: Array<Post>;
 };
 
 
-export type QueryPostArgs = {
+export type QueryExpenseArgs = {
   id: Scalars['Float'];
 };
 
@@ -125,6 +132,13 @@ export type ChangePasswordMutationVariables = Exact<{
 
 export type ChangePasswordMutation = { __typename?: 'Mutation', changePassword: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename?: 'User', id: number, username: string, email: string, created_at: string, updated_at: string } | null } };
 
+export type CreateExpenseMutationVariables = Exact<{
+  input: ExpenseInput;
+}>;
+
+
+export type CreateExpenseMutation = { __typename?: 'Mutation', createExpense: { __typename?: 'Expense', id: number, title: string, price: string, creatorId: number, created_at: string, updated_at: string } };
+
 export type ForgotPasswordMutationVariables = Exact<{
   email: Scalars['String'];
 }>;
@@ -155,7 +169,7 @@ export type RegisterMutation = { __typename?: 'Mutation', register: { __typename
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: number, username: string, email: string } | null };
+export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: number, username: string, email: string, created_at: string, updated_at: string } | null };
 
 export const RegularErrorFragmentDoc = gql`
     fragment RegularError on FieldError {
@@ -188,6 +202,22 @@ ${RegularUserFragmentDoc}`;
 
 export function useChangePasswordMutation() {
   return Urql.useMutation<ChangePasswordMutation, ChangePasswordMutationVariables>(ChangePasswordDocument);
+};
+export const CreateExpenseDocument = gql`
+    mutation CreateExpense($input: ExpenseInput!) {
+  createExpense(input: $input) {
+    id
+    title
+    price
+    creatorId
+    created_at
+    updated_at
+  }
+}
+    `;
+
+export function useCreateExpenseMutation() {
+  return Urql.useMutation<CreateExpenseMutation, CreateExpenseMutationVariables>(CreateExpenseDocument);
 };
 export const ForgotPasswordDocument = gql`
     mutation ForgotPassword($email: String!) {
@@ -247,6 +277,8 @@ export const MeDocument = gql`
     id
     username
     email
+    created_at
+    updated_at
   }
 }
     `;

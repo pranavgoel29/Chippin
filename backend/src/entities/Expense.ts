@@ -25,7 +25,7 @@ export class Expense extends BaseEntity {
 
   @Field()
   @Column()
-  price!: number;
+  price!: string;
 
   @Field()
   @Column()

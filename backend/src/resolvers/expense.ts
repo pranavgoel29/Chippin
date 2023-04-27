@@ -18,7 +18,7 @@ class ExpenseInput {
   title: string;
 
   @Field()
-  price: number;
+  price: string;
 }
 
 @Resolver()
@@ -46,7 +46,7 @@ export class ExpenseResolver {
   // Creating Expense
   @Mutation(() => Expense)
   @UseMiddleware(isAuth) // Any where we want to check anything we can just have this middleware check there and pass the function that will return the values and based on that it will run the following mutations or queries.
-  async createPost(
+  async createExpense(
     // Taking argument 'title' for new expense
     @Arg("input") input: ExpenseInput, // The string type will get Infered here.
     @Ctx() { req }: MyContext
@@ -56,7 +56,7 @@ export class ExpenseResolver {
 
   // Updating Expense
   @Mutation(() => Expense, { nullable: true })
-  async updatePost(
+  async updateExpense(
     @Arg("id") id: number,
     // For making a field optional we have to make it 'nullable' and to make it nullable, we have to exxplicitly set the type.
     @Arg("title", () => String, { nullable: true }) title: string
@@ -75,7 +75,7 @@ export class ExpenseResolver {
 
   // Delete Expense
   @Mutation(() => Boolean) // returning boolean to just get whether it worked or not.
-  async deletePost(@Arg("id") id: number): Promise<boolean> {
+  async deleteExpense(@Arg("id") id: number): Promise<boolean> {
     await Expense.delete(id);
     return true;
   }
