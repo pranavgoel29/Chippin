@@ -44,12 +44,12 @@ const Expenses = () => {
               <b>Username: {body}</b>
             </div>
             <li
-              className="div1-sub1-li def"
+              className="div1-sub1-li"
               onClick={() => navigate(Pages.DASHBOARD)}
             >
               <img className="icon" src={dashboard}></img>Dashboard
             </li>
-            <li className="div1-sub1-li">
+            <li className="div1-sub1-li def">
               <img className="icon" src={transaction}></img>Expenses
             </li>
 

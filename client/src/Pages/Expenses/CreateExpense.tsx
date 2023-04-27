@@ -13,6 +13,7 @@ import theme from "../../styles/theme";
 import styled from "styled-components";
 
 const CreateExpenseWrapper = styled.div`
+  font-family: Montserrat;
   height: fit-content;
   border-radius: 24px;
   padding: 40px;
@@ -22,6 +23,7 @@ const CreateExpenseWrapper = styled.div`
   .createExpenseHeading {
     color: ${theme.dark_beige};
     margin-bottom: 10px;
+    font-weight: 600;
   }
 
   form {
@@ -31,6 +33,7 @@ const CreateExpenseWrapper = styled.div`
 
     .createExpenseButton {
       margin-top: 10px;
+      font-weight: 600;
     }
   }
 `;

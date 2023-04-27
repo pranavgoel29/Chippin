@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: Roboto Regular;
-    src: url('/Roboto-Regular.ttf');
+    src: local('Roboto'),url('public/Roboto-Regular.ttf') format('truetype');
   }
 
   @font-face {
@@ -41,7 +41,7 @@ const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     /* font-family: Roboto Regular !important; */
-    font-family: Roboto Regular !important;
+    font-family: Montserrat;
   }
 
   html,

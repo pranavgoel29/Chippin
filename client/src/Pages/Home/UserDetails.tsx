@@ -105,7 +105,7 @@ const UserDetails = () => {
               <b>Username: {body}</b>
             </div>
             <li
-              className="div1-sub1-li def"
+              className="div1-sub1-li"
               onClick={() => navigate(Pages.DASHBOARD)}
             >
               <img className="icon" src={dashboard}></img>Dashboard
@@ -118,7 +118,7 @@ const UserDetails = () => {
             </li>
 
             <li
-              className="div1-sub1-li"
+              className="div1-sub1-li def"
               onClick={() => navigate(Pages.USER_DETAILS)}
             >
               <img className="icon" src={user}></img>User
