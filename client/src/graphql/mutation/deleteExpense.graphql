@@ -1,0 +1,3 @@
+mutation DeleteExpense($deleteExpenseId: Int!) {
+  deleteExpense(id: $deleteExpenseId)
+}

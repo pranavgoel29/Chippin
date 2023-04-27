@@ -37,7 +37,10 @@ export class ExpenseResolver {
     // return Expense.find();
 
     // const realLimit = Math.min(50, limit);
-    const qb = await connData.getRepository(Expense).createQueryBuilder("p").orderBy('created_at','DESC');
+    const qb = await connData
+      .getRepository(Expense)
+      .createQueryBuilder("p")
+      .orderBy("created_at", "DESC");
 
     if (req.session.userId) {
       qb.where("creator_id = :user_id", {
@@ -92,7 +95,7 @@ export class ExpenseResolver {
 
   // Delete Expense
   @Mutation(() => Boolean) // returning boolean to just get whether it worked or not.
-  async deleteExpense(@Arg("id") id: number): Promise<boolean> {
+  async deleteExpense(@Arg("id",() => Int) id: number): Promise<boolean> {
     await Expense.delete(id);
     return true;
   }

@@ -61,7 +61,7 @@ export type MutationCreateExpenseArgs = {
 
 
 export type MutationDeleteExpenseArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
 };
 
 
@@ -138,6 +138,13 @@ export type CreateExpenseMutationVariables = Exact<{
 
 
 export type CreateExpenseMutation = { __typename?: 'Mutation', createExpense: { __typename?: 'Expense', id: number, title: string, price: string, creator_id: number, created_at: string, updated_at: string } };
+
+export type DeleteExpenseMutationVariables = Exact<{
+  deleteExpenseId: Scalars['Int'];
+}>;
+
+
+export type DeleteExpenseMutation = { __typename?: 'Mutation', deleteExpense: boolean };
 
 export type ForgotPasswordMutationVariables = Exact<{
   email: Scalars['String'];
@@ -223,6 +230,15 @@ export const CreateExpenseDocument = gql`
 
 export function useCreateExpenseMutation() {
   return Urql.useMutation<CreateExpenseMutation, CreateExpenseMutationVariables>(CreateExpenseDocument);
+};
+export const DeleteExpenseDocument = gql`
+    mutation DeleteExpense($deleteExpenseId: Int!) {
+  deleteExpense(id: $deleteExpenseId)
+}
+    `;
+
+export function useDeleteExpenseMutation() {
+  return Urql.useMutation<DeleteExpenseMutation, DeleteExpenseMutationVariables>(DeleteExpenseDocument);
 };
 export const ForgotPasswordDocument = gql`
     mutation ForgotPassword($email: String!) {
