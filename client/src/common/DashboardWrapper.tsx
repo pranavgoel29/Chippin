@@ -16,6 +16,13 @@ const DashboardWrapper = styled.div`
   .expensesRightContainer {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    
+    overflow-y: scroll;
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .page-body-div1 {
@@ -34,7 +41,7 @@ const DashboardWrapper = styled.div`
     margin-left: 1rem !important;
     padding: 30px;
     // margin: 3rem;
-    height: 90%;
+    height: 85%;
     width: 77%;
     display: flex;
     /* justify-content: center;

@@ -1,5 +1,5 @@
-query Expenses($user_id: Int!){
-  expenses(user_id: $user_id) {
+query Expenses{
+  expenses {
     id
     creator_id
     title

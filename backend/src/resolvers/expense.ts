@@ -30,7 +30,8 @@ export class ExpenseResolver {
   // destructuring the ctx as it will provide cleaner syntax.
   async expenses(
     // @Arg("limit", () => Int) limit: number,
-    @Arg("user_id", () => Int) user_id: number
+    // @Arg("user_id", () => Int) user_id: number
+    @Ctx() { req }: MyContext
   ): Promise<Expense[]> {
     // find will return a promise of expenses.
     // return Expense.find();
@@ -38,9 +39,9 @@ export class ExpenseResolver {
     // const realLimit = Math.min(50, limit);
     const qb = await connData.getRepository(Expense).createQueryBuilder("p");
 
-    if (user_id) {
+    if (req.session.userId) {
       qb.where("creator_id = :user_id", {
-        user_id,
+        user_id: req.session.userId,
       });
     }
 

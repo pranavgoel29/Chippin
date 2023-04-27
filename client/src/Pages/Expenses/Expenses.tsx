@@ -12,6 +12,7 @@ import { Pages } from "../../routes";
 import DashboardWrapper from "../../common/DashboardWrapper";
 
 import CreateExpense from "./CreateExpense";
+import ListExpenses from "./ListExpenses";
 
 const Expenses = () => {
   const navigate = useNavigate();
@@ -65,6 +66,7 @@ const Expenses = () => {
       <div className="page-body-div2 dashboardRightContainer expensesRightContainer">
         <h2 className="rightSectionHeading">Expenses</h2>
         <CreateExpense />
+        <ListExpenses />
       </div>
     </DashboardWrapper>
   );

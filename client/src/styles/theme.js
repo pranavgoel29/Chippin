@@ -18,6 +18,7 @@ const theme = {
     backgroundColor: '#242529',
     backgroundAccentColor: '#363538',
     cardBackgroundAccentColor: '#393939',
+    expenseCardBackgroundAccentColor: '#ffe680',
     cardInputColor: '#515151',
     primaryColor: '#1D2939',
     secondaryColor: '#F9EED2',
