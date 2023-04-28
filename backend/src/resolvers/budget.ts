@@ -32,13 +32,13 @@ export class BudgetResolver {
     const qb = await connData
       .getRepository(Budget)
       .createQueryBuilder("p")
-      .orderBy("created_at", "DESC");
-
-    if (req.session.userId) {
-      qb.where("creator_id = :user_id", {
+      .orderBy("created_at", "DESC")
+      .where("creator_id = :user_id", {
         user_id: req.session.userId,
       });
-    }
+    // if (req.session.userId) {
+
+    // }
 
     return qb.getMany();
   }

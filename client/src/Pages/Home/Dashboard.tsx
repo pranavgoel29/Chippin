@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DashboardWrapper from "../../common/DashboardWrapper";
 // import schedule from "../../images/schedule.png";
 // import setting from "../../images/setting.png";
@@ -15,7 +15,7 @@ import BudgetsCalc from "../Budgets/BudgetCalc";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [{ data, fetching, error }] = useMeQuery();
+  const [{ data, fetching, error }, reexecute] = useMeQuery();
 
   let body: any = "";
 

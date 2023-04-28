@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import {
   useBudgetsQuery,
@@ -28,6 +28,10 @@ const ListBudget = () => {
   const [, deleteBudget] = useDeleteBudgetMutation();
   const budgets = data?.budgets;
   console.log("data: ", data);
+
+  useEffect(() => {
+    reexecute({ requestPolicy: "network-only" });
+  }, []);
 
   let body: any = "";
 

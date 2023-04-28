@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import {
   useDeleteExpenseMutation,
@@ -28,6 +28,10 @@ const ListExpenses = () => {
   const [, deleteExpense] = useDeleteExpenseMutation();
   const expenses = data?.expenses;
   console.log("data: ", data);
+
+  useEffect(() => {
+    reexecute({ requestPolicy: "network-only" });
+  }, []);
 
   let body: any = "";
 
