@@ -23,17 +23,6 @@ import { BudgetResolver } from "./resolvers/budget";
 
 // import cors from "cors";
 
-// export const connData = async () => {
-//   return new DataSource({
-//     type: "postgres",
-//     database: "chippin",
-//     username: "postgres",
-//     password: "admin",
-//     logging: true,
-//     synchronize: true,
-//     entities: [Post, User],
-//   });
-// };
 
 export const connData = new DataSource({
   type: "postgres",
