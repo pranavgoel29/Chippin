@@ -37,6 +37,7 @@ const CreateExpenseWrapper = styled.div`
   form {
     input {
       background-color: ${theme.cardInputColor};
+      color: white !important;
     }
 
     .createExpenseButton {
