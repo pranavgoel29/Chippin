@@ -50,7 +50,7 @@ const main = async () => {
   await conn.initialize();
 
   // To delete a certain thing in the db, turn synchronize as false when doing this.
-  // await Expense.delete({})
+  // await User.delete({})
 
   // const orm = await MikroORM.init(microConfig);
   // await orm.getMigrator().up();
@@ -123,7 +123,7 @@ const main = async () => {
     // Adding this to handle cross origin requests that will be going to the apollo studio.
 
     cors: {
-      origin: ["https://studio.apollographql.com", "http://127.0.0.1:5173"],
+      origin: ["https://studio.apollographql.com", "http://127.0.0.1:5173","https://chippin.vercel.app"],
       // origin: ["http://127.0.0.1:5173"],
       // origin: ["https://chippin.vercel.app"],
       credentials: true,

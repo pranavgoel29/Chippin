@@ -21,7 +21,6 @@ import { v4 } from "uuid";
 import { COOKIE_NAME, FORGET_PASSWORD_PREFIX } from "../constants";
 import { connData } from "../index";
 
-
 @ObjectType()
 class FieldError {
   @Field()
@@ -174,9 +173,9 @@ export class UserResolver {
         .returning("*")
         .execute();
       console.log("result: ", result);
-      user = result.raw;
+      user = result.raw[0];
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.code === "23505") {
         // duplicate username error
         return {
@@ -194,6 +193,7 @@ export class UserResolver {
     // Store user Id session
     // This will set a cokkie on the user.
     // It will help us to keep them logged in.
+
     req.session.userId = user.id;
     return { user };
   }
@@ -228,6 +228,7 @@ export class UserResolver {
 
     req.session.userId = user.id;
 
+    console.log({ user });
     return { user };
   }
 
