@@ -21,6 +21,17 @@ Tech Stack:
 - Styled-Components
 - Vite
 
+
+## 📷Screenshots
+![Login Page Screenshot](./screenshots/login.png)
+
+![Register Page Screenshot](./screenshots/register.png)
+
+![Dashboard Page Screenshot](./screenshots/dashboard.png)
+
+![Expenses Page Screenshot](./screenshots/expenses.png)
+
+![User Page Screenshot](./screenshots/userpage.png)
 ## 🐛Bug Reporting
 
 Feel free to [open an issue](https://github.com/pranavgoel29/Chippin/issues) on GitHub if you find any bug.
