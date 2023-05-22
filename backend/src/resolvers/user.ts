@@ -126,7 +126,8 @@ export class UserResolver {
 
     await sendEmail(
       email,
-      `<a href="http://127.0.0.1:5173/change-password/${token}">Reset Password</a>`
+      // `<a href="http://127.0.0.1:5173/change-password/${token}">Reset Password</a>`
+      `<a href="https://chippin.vercel.app/change-password/${token}">Reset Password</a>`
     );
 
     return true;

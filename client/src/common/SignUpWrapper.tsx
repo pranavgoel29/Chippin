@@ -122,6 +122,7 @@ const SignUpWrapper = styled.div`
     background: #eaeaea;
   }
   .form-button {
+    cursor:pointer;
     background: black;
     border-radius: 10px;
     border: none;

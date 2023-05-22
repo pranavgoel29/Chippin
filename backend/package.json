@@ -39,6 +39,7 @@
     "mailgen": "^2.0.27",
     "nodemailer": "^6.9.1",
     "pg": "^8.10.0",
+    "redis": "^4.6.6",
     "redis-server": "^1.2.2",
     "reflect-metadata": "^0.1.13",
     "tsconfig.json": "^1.0.11",

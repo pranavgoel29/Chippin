@@ -9,7 +9,9 @@ import { UserResolver } from "./resolvers/user";
 import connectRedis from "connect-redis";
 import session from "express-session";
 
-import redis from "ioredis";
+// import redis from "ioredis";
+
+import { createClient } from 'redis';
 
 import { DataSource } from "typeorm";
 import { User } from "./entities/User";
@@ -55,11 +57,22 @@ const main = async () => {
 
   // remove (session), it is deperecated in the V7 of reddis-connect.
   const RedisStore = connectRedis;
-  const redisClient = new redis();
+  // const redisClient = new redis();
   // const redisClient = createClient();
 
+
+  
+
+  const redisClient = createClient({
+      password: 'MOc7IgelJU2MDMoMamKMymwclaPgMJcg',
+      socket: {
+          host: 'redis-17647.c305.ap-south-1-1.ec2.cloud.redislabs.com',
+          port: 17647
+      }
+  });
+
   // // Add 'await connect()' to remove the Error: The client is closed error.
-  // await redisClient.connect();
+  await redisClient.connect();
 
   // Comment this out when using the apollo Provider
   // app.use(
