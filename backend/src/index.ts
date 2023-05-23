@@ -9,6 +9,10 @@ import { UserResolver } from "./resolvers/user";
 import connectRedis from "connect-redis";
 import session from "express-session";
 
+import * as dotenv from "dotenv";
+dotenv.config();
+
+
 // import redis from "ioredis";
 
 import { createClient } from 'redis';
@@ -64,9 +68,9 @@ const main = async () => {
   
 
   const redisClient = createClient({
-      password: 'MOc7IgelJU2MDMoMamKMymwclaPgMJcg',
+      password: process.env.REDIS_PASSWORD,
       socket: {
-          host: 'redis-17647.c305.ap-south-1-1.ec2.cloud.redislabs.com',
+          host: process.env.REDIS_HOST,
           port: 17647
       }
   });
