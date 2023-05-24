@@ -22,7 +22,7 @@ jobs:
           node-version: '16.x'
 
       - name: npm install, build, and test
-      
+      - script:
         workingDirectory: ~/backend
 
         run: |
