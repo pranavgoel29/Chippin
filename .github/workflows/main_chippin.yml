@@ -25,7 +25,7 @@ jobs:
 
         run: |
           yarn install --cwd ./backend
-           yarn run watch --if-present --cwd ./backend
+           yarn run watch --if-present --cwd ../backend
            yarn run test --if-present --cwd ./backend
 
       - name: Upload artifact for deployment job
