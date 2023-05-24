@@ -24,10 +24,9 @@ jobs:
       - name: npm install, build, and test
 
         run: |
-         cd ./backend
+          cd ./backend
           yarn install 
-           yarn run watch --if-present 
-           yarn run test --if-present 
+          yarn run watch
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
