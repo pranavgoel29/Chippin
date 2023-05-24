@@ -23,7 +23,7 @@ jobs:
 
       - name: npm install, build, and test
       
-        dir: ~/backend
+        workingDirectory: ~/backend
 
         run: |
           yarn install
