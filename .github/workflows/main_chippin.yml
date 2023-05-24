@@ -25,10 +25,10 @@ jobs:
      
         with:
           path: ./backend/dist
-          run: |
-            yarn install
-            yarn run watch --if-present
-            yarn run test --if-present
+        run: |
+          yarn install
+          yarn run watch --if-present
+          yarn run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
