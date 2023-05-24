@@ -24,9 +24,10 @@ jobs:
       - name: npm install, build, and test
 
         run: |
-          yarn install --cwd ./backend
-           yarn run watch --if-present --cwd ../backend
-           yarn run test --if-present --cwd ./backend
+         cd ./backend
+          yarn install 
+           yarn run watch --if-present 
+           yarn run test --if-present 
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
