@@ -20,6 +20,8 @@ Tech Stack:
 - TypeScript
 - GraphQL
 - Type ORM
+- PostgresSQL
+- React-Hook-Form
 - Styled-Components
 - Vite
 
