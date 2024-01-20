@@ -128,8 +128,6 @@ const main = async () => {
 
     cors: {
       origin: [
-        
-        "http://127.0.0.1:5173",
         "https://chippin.vercel.app",
       ],
       
