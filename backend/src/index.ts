@@ -127,7 +127,12 @@ const main = async () => {
     // Adding this to handle cross origin requests that will be going to the apollo studio.
 
     cors: {
-      origin: ["https://chippin.vercel.app"],
+      origin: [
+        
+        "http://127.0.0.1:5173",
+        "https://chippin.vercel.app",
+      ],
+      
       credentials: true,
     },
   });
@@ -138,8 +143,8 @@ const main = async () => {
   app.set("trust proxy", 1);
 
   app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-  });
+    console.log(`Example app listening on port ${port}`)
+  })
 };
 
 main().catch((err) => {

@@ -30,7 +30,7 @@ function betterUpdateQuery<Result, Query>(
 }
 
 const client = new Client({
-  url: "https://chippin.onrender.com/graphql",
+  url: import.meta.env.VITE_GRAPHQL_API as string,
   exchanges: [
     cacheExchange({
       updates: {
