@@ -138,12 +138,14 @@ const main = async () => {
     },
   });
 
+  const port = process.env.PORT || 4000;
+
   // Setting proxy for handling cookies
   app.set("trust proxy", 1);
 
-  app.listen(4000, () => {
-    console.log("server started on localhost:4000");
-  });
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+  })
 };
 
 main().catch((err) => {
