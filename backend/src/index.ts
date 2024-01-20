@@ -12,16 +12,16 @@ import session from "express-session";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-
 // import redis from "ioredis";
 
-import { createClient } from 'redis';
+import { createClient } from "redis";
 
 import { DataSource } from "typeorm";
 import { User } from "./entities/User";
 import { Expense } from "./entities/Expense";
 import { Budget } from "./entities/Budget";
 import { BudgetResolver } from "./resolvers/budget";
+import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
 
 // import { createClient } from "redis";
 
@@ -29,16 +29,17 @@ import { BudgetResolver } from "./resolvers/budget";
 
 // import cors from "cors";
 
+const connectionString: string = process.env.POSTGRES_URL as string;
 
-export const connData = new DataSource({
+const connectionOptions: PostgresConnectionOptions = {
   type: "postgres",
-  database: "chippin",
-  username: "postgres",
-  password: "admin",
-  logging: true,
-  synchronize: true,
+  url: connectionString, // Use 'url' instead of 'database', 'username', 'password', etc.
+  logging: true, // Set to false in production
+  synchronize: true, // Set to false in production
   entities: [Expense, User, Budget],
-});
+};
+
+export const connData = new DataSource(connectionOptions);
 
 const main = async () => {
   const conn = await connData;
@@ -64,15 +65,12 @@ const main = async () => {
   // const redisClient = new redis();
   // const redisClient = createClient();
 
-
-  
-
   const redisClient = createClient({
-      password: process.env.REDIS_PASSWORD,
-      socket: {
-          host: process.env.REDIS_HOST,
-          port: Number(process.env.REDIS_PORT),
-      }
+    password: process.env.REDIS_PASSWORD,
+    socket: {
+      host: process.env.REDIS_HOST,
+      port: Number(process.env.REDIS_PORT),
+    },
   });
 
   // // Add 'await connect()' to remove the Error: The client is closed error.
@@ -129,7 +127,11 @@ const main = async () => {
     // Adding this to handle cross origin requests that will be going to the apollo studio.
 
     cors: {
-      origin: ["https://studio.apollographql.com", "http://127.0.0.1:5173","https://chippin.vercel.app"],
+      origin: [
+        "https://studio.apollographql.com",
+        "http://127.0.0.1:5173",
+        "https://chippin.vercel.app",
+      ],
       // origin: ["http://127.0.0.1:5173"],
       // origin: ["https://chippin.vercel.app"],
       credentials: true,
