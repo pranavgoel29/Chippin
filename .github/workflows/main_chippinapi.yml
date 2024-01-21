@@ -25,8 +25,8 @@ jobs:
         run: |
           cd backend
           yarn
-          yarn build --if-present
-          yarn start2 --if-present
+          yarn build 
+          yarn start2 
 
       - name: Zip artifact for deployment
         run: |
