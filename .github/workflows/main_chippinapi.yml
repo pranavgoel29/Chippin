@@ -23,18 +23,21 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          cd backend
+          yarn
+          yarn build 
+          yarn start2 
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: |
+          cd backend
+          zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: release.zip
+          path: backend/release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -58,5 +61,5 @@ jobs:
         with:
           app-name: 'chippinAPI'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EB9E5048C2174EC7935E6E42E73C34B5 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1003E0ABF28E4A458E22863C4C8193E2 }}
           package: .
